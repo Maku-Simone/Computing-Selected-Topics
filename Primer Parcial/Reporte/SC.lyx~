@@ -1,0 +1,962 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extarticle
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Tarea de Sistemas Complejos
+\end_layout
+
+\begin_layout Author
+Frías Mercado Carlos Elliot
+\end_layout
+
+\begin_layout Date
+Fecha de Entrega: 22 de Agosto de 2017 11:59pm
+\end_layout
+
+\begin_layout Standard
+\align center
+3CM6
+\end_layout
+
+\begin_layout Standard
+\align center
+Computing Selected Topics - Sistemas Complejos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+En este trabajo abordaré el tema de los Sistemas Complejos, donde mostraré
+ que instituciones y/u organizaciones los estudian tanto en México como
+ en el mundo, de la misma manera mostraré ejemplos de empresas que hagan
+ uso de los mismos y como lo hacen.
+ Para terminar se habalré de los agentes en los Sistemas Complejos, explicando
+ su modelo, definición y expresión matemática
+\end_layout
+
+\begin_layout Section
+Sistemas Complejos en México 
+\end_layout
+
+\begin_layout Subsection
+Instituciones investigando sobre los sistemas complejos en México
+\end_layout
+
+\begin_layout Subsubsection
+Benemérita Universidad Autónoma de Puebla - BUAP
+\end_layout
+
+\begin_layout Standard
+Dentro de la Benemérita Universidad Autónoma de Puebla, dentro de una de
+ las lineas de investigación se encuentra la de Computación Aplicada a Ciencias
+ e Ingeniería teniendo como ramas principales:
+\end_layout
+
+\begin_layout Enumerate
+Ingeniería en Sistemas Inteligentes
+\end_layout
+
+\begin_layout Enumerate
+Computación Matémática
+\end_layout
+
+\begin_layout Standard
+Los objetivos de esta linea de investigación son:
+\end_layout
+
+\begin_layout Enumerate
+Desarrollar y aplicar métodos matemáticos y algoritmos para resolver problemas
+ complejos con información incompleta e inexacta y realizar la mejor toma
+ de decisiones.
+\end_layout
+
+\begin_layout Enumerate
+Desarrollar algoritmos de aprendizaje, adaptativos y evolutivos que permitan
+ el comportamiento inteligente de sistemas.
+\end_layout
+
+\begin_layout Enumerate
+Implementar sistemas inteligentes en cómputo reconfigurable para el control
+ en tiempo real de otros sistemas.
+\end_layout
+
+\begin_layout Enumerate
+Incorporar métodos de las teorías de juegos, grafos y sistemas complejos
+ en los sistemas inteligentes.
+\end_layout
+
+\begin_layout Subsubsection
+Centro de Investigación y Estudios Avanzados - CINVESTAV
+\end_layout
+
+\begin_layout Standard
+El CINVESTAV cuenta con una linea de investigación llamada:
+\end_layout
+
+\begin_layout Standard
+Inteligencia Computacional y Optimización Avanzada (ICOA)
+\end_layout
+
+\begin_layout Standard
+ICOA que tiene como objetivo el estudio de conceptos, modelos, algoritmos
+ y herramientas para el desarrollo de sistemas inteligentes capaces de resolver
+ problemas complejos y cambiantes.
+ Dentro de la Inteligencia Computacional se pueden abordar temas relacionados
+ con optimización, sistemas expertos, redes neuronales, computación evolutiva,
+ inteligencia de enjambre, sistemas inmunes artificiales, sistemas difusos,
+ así como sus aplicaciones.
+ Las principales áreas de investigación en las que esta se enfoca son optimizaci
+ón combinatoria, multiobjetivo y a gran escala, computación evolutiva, inteligen
+cia colectiva emergente y metaheurísticas avanzadas.
+ Algunos temas particulares de interés incluyen sintonización y control
+ de parámetros en algoritmos evolutivos, auto-organización de sistemas complejos
+, bioinformática, diseño óptimo de experimentos e hibridación en computación
+ evolutiva multiobjetivo.
+\end_layout
+
+\begin_layout Subsubsection
+Laboratorio de Ciencias de la Computacion (LCCOMP)
+\end_layout
+
+\begin_layout Standard
+El Laboratorio de Ciencias de la Computación (LCCOMP), con sede en la ciudad
+ de México, centra sus intereses en modelos de computación convencional
+ y no-convencional.
+ Asi mismo, se realizan estudios e investigaciones en teoría de la computación
+ y lenguajes, autómata celular, sistemas complejos, simulación de fenómenos
+ físicos, caos, redes celulares neuronales, fenómenos no-lineales, vida
+ artificial, computación natural, computadoras de reacción y difusión, biocomput
+ación, computación cuántica, algoritmos genéticos, sistemas dinámicos, redes,
+ agentes, historia de la computación e impacto social de la computación.
+ En la modelación de mecanismos abstractos para la implementación de computacion
+es, como son: computación por choques de partículas, computación por competición
+ de patrones, computación basada en ciclotrones (super choques).
+ Explotando poderosas máquinas: diagramas de de Bruijn, diagramas de subconjunto
+s y diagramas de parejas.
+\end_layout
+
+\begin_layout Subsubsection
+Instituto Politécnico Nacional - IPN
+\end_layout
+
+\begin_layout Standard
+Dentro del Instituto Politécnico Nacional existe el Centro de Systemas Complejos
+ (CCSIPN) dirigido por Genaro Juárez Martínez y Andrés Ortigoza Campos,
+ en colaboración con:
+\end_layout
+
+\begin_layout Enumerate
+Grupo Mecánica Fractal (ESIME, IPN)
+\end_layout
+
+\begin_layout Enumerate
+Laboratorio de Sistemas Complejos (UPIITA, IPN)
+\end_layout
+
+\begin_layout Enumerate
+Departamento de Microcomputadoras (IC, UAP)
+\end_layout
+
+\begin_layout Enumerate
+Centro de Ciencias de la Complejidad (C3, UNAM)
+\end_layout
+
+\begin_layout Enumerate
+Cibernética y Sistemas Complejos (CCADET, UNAM)
+\end_layout
+
+\begin_layout Enumerate
+Laboratorio de Comunicación Compleja (LABCOMPLEX, UNAM)
+\end_layout
+
+\begin_layout Enumerate
+Grupo de Sistemas Dinámicos y Caos (FES Acatlán, UNAM)
+\end_layout
+
+\begin_layout Standard
+El Grupo de Sistemas Complejos del Instituto Politécnico Nacional (CCSIPN)
+ desarrolla investigaciones sobre fenómenos no lineales, tales como: ciencia
+ de la complejidad, informática, ciencias sociales, proceso celular, biología
+ sintética, bioinformática, sistemas de reacción-difusión, vida artificial,
+ inteligencia artificial , Virus, infecciones, poblaciones, dinámica de
+ partículas, seguridad y salud pública, auto-organización, sistemas adaptativos,
+ emergencia, proceso evolutivo.
+\end_layout
+
+\begin_layout Subsubsection
+Universidad Autónoma de México - UAM
+\end_layout
+
+\begin_layout Standard
+La UAM en su plantel Iztapalapa cuenta con la Línea de Investiagción en
+ Física de los Sistemas Complejos, la cuals cuenta con 7 profesores-investigador
+es que están dedicando sus esfuerzos a temas de frontera en el campo, así
+ tenemos que las líneas de investigación van desde problemas de gran aplicación,
+ como la Física de Sistemas Biológicos, Flujo vehicular y Fotoquímica, hasta
+ los temas fundamentales de la Teoría Cinética Relativista, los Procesos
+ Estocásticos y la Hidrodinámica.
+\end_layout
+
+\begin_layout Standard
+La UAM Azcapotzalco tiene un área de investiagción en Sistemas Computacionales
+ cuyos objetivos principales son:
+\end_layout
+
+\begin_layout Enumerate
+Estudiar y desarrollar métodos y técnicas que permitan utilizar a las computador
+as como un medio para representar, interpretar, predecir y en su caso modificar
+ sistemas complejos.
+\end_layout
+
+\begin_layout Enumerate
+Desarrollar investigaciones encaminadas a la determinación y modificación
+ de las relaciones existentes entre los elementos de un sistema mediante
+ el uso de herramientas computacionales, tales como la inteligencia artificial,
+ la simulación, los lenguajes formales, etc.
+\end_layout
+
+\begin_layout Enumerate
+Estudiar y asimilar tecnologías novedosas que representen un avance en el
+ estado del arte de las Ciencias de la Computación.
+\end_layout
+
+\begin_layout Subsubsection
+Consejo Nacional de Ciencia y Tecnología - CONACYT 
+\end_layout
+
+\begin_layout Standard
+El CONACYT cuenta con un proyecto de investigación creado en Julio de 2016
+ llamado: Red Temática para Apoyo a la Decisión y Optimización Inteligente
+ de Sistemas Complejos y de Gran Escala cuyos objetivos son:
+\end_layout
+
+\begin_layout Enumerate
+Desarrollar métodos de solución de problemas de gran escala, de gran importancia
+ o impacto para el país o internacional afines con las líneas de investigación
+ de los grupos o investigadores participantes, con múltiples etapas de decisión
+\end_layout
+
+\begin_layout Enumerate
+Identificar los métodos adecuados de acuerdo a las características estructurales
+ específicas de instancias de problemas complejos y de gran escala en áreas
+ como logística y cadena de suministros, administración, planeación, gestión
+ de proyectos, transporte, transporte urbano entre otros 
+\end_layout
+
+\begin_layout Enumerate
+Profundizar el nivel de consolidación de los investigadores y grupos de
+ investigación involucrados 
+\end_layout
+
+\begin_layout Enumerate
+Aplicar los resultados científicos obtenidos en la resolución de casos o
+ problemas de empresas u organizaciones públicas 
+\end_layout
+
+\begin_layout Enumerate
+Apoyar el desarrollo o la creación de grupos de investigación en temas afines
+ 
+\end_layout
+
+\begin_layout Enumerate
+Preparar recursos humanos de alto nivel en la solución de problemas complejos
+ de gran escala desde perspectivas multicriterio y optimización inteligente
+ .
+\end_layout
+
+\begin_layout Subsubsection
+Universidad Nacional Autónoma de Mexico - UNAM
+\end_layout
+
+\begin_layout Standard
+Dentro de la UNAM existe el Centro de Ciencias de la Complejidad, que tiene
+ el objetivo de ofrecer soluciones en diversos campos, el Centro de Ciencias
+ de la Complejidad (C3) busca tender puentes entre las ciencias exactas,
+ naturales, sociales y humanísticas; entre teoría, experimentos y simulaciones
+ en computadora, y entre investigación básica y aplicada.
+ 
+\end_layout
+
+\begin_layout Standard
+A la fecha, el C3 ha conformado siete programas de investigación para desarrolla
+r proyectos concretos a través del enfoque de los sistemas complejos: Complejida
+d y salud pública, Biología celular, Ecología y ciencias ambientales, Ciencias
+ de los datos e inteligencia computacional, Complejidad social, Arte, ciencia
+ y complejidad así como Neurociencias, son las directrices bajo las cuales
+ están en proceso de desarrollo diversos proyectos de investigación básica
+ y aplicada cuya pretensión es entender, solucionar y prevenir problemáticas
+ que requieren atención urgente para poder tomar decisiones sobre las afectacion
+es que impactan socioeconómicamente.
+\end_layout
+
+\begin_layout Subsubsection
+Universidad Autónoma de la Ciudad de México - UACM
+\end_layout
+
+\begin_layout Standard
+La UACM cuenta con una maestría en Ciencias de la Complejidad.
+\end_layout
+
+\begin_layout Standard
+El plan de estudios se ha diseñado considerando las diferencias en la formación
+ matemática, por ello, se ofrecen dos orientaciones curriculares, además,
+ el programa está directamente relacionado con modelos matemáticos de procesos
+ no lineales en distintas escalas de organización de la materia; 
+\end_layout
+
+\begin_layout Standard
+Los contenidos de las líneas curriculares se han establecido para que quienes
+ cursen
+\end_layout
+
+\begin_layout Enumerate
+Opción A 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Construyan los modelos con las herramientas adecuadas de representación
+ y análisis no lineal
+\end_layout
+
+\begin_layout Enumerate
+Interactúen con profesionales de los campos de estudio de los procesos represent
+ados para juzgar su pertinencia
+\end_layout
+
+\begin_layout Enumerate
+Replanteen los modelos cuando sea necesario, con base en la colaboración
+ del trabajo interdisciplinario
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Opción B, 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Comprendan el lenguaje, las hipótesis y las limitaciones de los modelos
+\end_layout
+
+\begin_layout Enumerate
+Sean capaces de utilizar simuladores y apoyos computacionales para calibrar
+ y juzgar la pertinencia de los modelos
+\end_layout
+
+\begin_layout Enumerate
+Colaboren con quienes hayan construido los modelos para su reelaboración
+ cuando sea necesario.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Cada mapa curricular se ha organizado con base en tres grandes líneas curricular
+es: la de Ciencia y Sociedad (CyS) es común a ambas opciones y se concibe
+ como el espacio de trabajo interdisciplinario de estudiantes y profesores.
+\end_layout
+
+\begin_layout Standard
+Para la opción A, las otras dos líneas son: la de Sistemas Complejos (SC)
+ y la de Dinámica no Lineal (DNL).
+\end_layout
+
+\begin_layout Standard
+A su vez, las otras dos líneas de la opción B son la de Complejidad (C)
+ y la de Fenomenología de la no linealidad (FNL).
+ 
+\end_layout
+
+\begin_layout Section
+Sistemas Complejos en el mundo 
+\end_layout
+
+\begin_layout Subsection
+Universidad de Sidney - Australia
+\end_layout
+
+\begin_layout Standard
+La Universidad de Sidney cuenta con el Centro de Sistemas Complejos, el
+ cual reúne a los mejores investigadores de toda la Universidad para promover
+ la investigación y la educación en física, ingeniería, matemáticas, biología
+ y ciencias sociales.
+\end_layout
+
+\begin_layout Standard
+Está compuestos por expertos de las facultades de Ingeniería y Tecnologías
+ de la Información, Ciencia, Arquitectura, Diseño y Planificación, Agricultura
+ y Medio Ambiente, el Centro Charles Perkins y el CSIRO.
+\end_layout
+
+\begin_layout Standard
+Se estudian las propiedades y aplicaciones de sistemas complejos en diversos
+ contextos como la dinámica cerebral, la neurociencia computacional, los
+ fenómenos críticos, la computación distribuida, el modelado epidémico,
+ la imagenología y la nanociencia.
+\end_layout
+
+\begin_layout Subsection
+Centro de Sistemas Complejos de Vermont - EEUU
+\end_layout
+
+\begin_layout Standard
+La universidad de Vermont ofrece la maestría en Sistemas Complejos dentro
+ del Centro de Sistemas Complejos de Vermont el cual es grado de dos años
+ con trayectorias disciplinarias opcionales.
+ Los estudiantes de UVM pueden incorporar el grado como parte de un Programa
+ de Maestría Acelerada.
+\end_layout
+
+\begin_layout Subsection
+Universidad de Utretch - Países Bajos
+\end_layout
+
+\begin_layout Standard
+La UU cuenta con un centro de estudios de sistemas complejos así como diversas
+ asignaturas de la misma en su maestría en Ciencias de la Computación.
+\end_layout
+
+\begin_layout Standard
+Cursos
+\end_layout
+
+\begin_layout Standard
+El estudiante debe tomar:
+\end_layout
+
+\begin_layout Itemize
+Introducción a los sistemas complejos 
+\end_layout
+
+\begin_layout Standard
+Además, al menos uno de los siguientes cursos de matemáticas (o un equivalente)
+ debe ser elegido:
+\end_layout
+
+\begin_layout Enumerate
+Redes complejas 
+\end_layout
+
+\begin_layout Enumerate
+Introducción al análisis numérico de bifurcación 
+\end_layout
+
+\begin_layout Enumerate
+Biología Matemática
+\end_layout
+
+\begin_layout Subsection
+L'Università Degli Studi di Torino - Italia
+\end_layout
+
+\begin_layout Standard
+En el plan de estudios de la Universidad de Torino existe el doctorado en
+ Sistemas Complejos para la vida científica.El sistema de créditos está vinculado
+ a las condiciones de inscripción a la Universidad: a tiempo completo y
+ a medio tiempo.
+ El estudiante de tiempo completo presenta para cada año de estudio su propio
+ plan de estudio, con un número de créditos entre 37 y 80.
+ El estudiante de medio tiempo presenta para cada año de estudio su propio
+ plan de estudio, con un número de créditos entre 20 y 36.
+ Las condiciones de inscripción a tiempo completo o medio son elegidas año
+ tras año, y las matrículas cambian de acuerdo a ellas
+\end_layout
+
+\begin_layout Subsection
+Universidad de Cardiff - Gales
+\end_layout
+
+\begin_layout Standard
+Esta universidad cuenta con un grupo de Sistemas Complejos el cual se especializ
+a en sistemas de gran escala, análisis de datos a escala, optimización de
+ criterios múltiples y cálculo humano / social.
+\end_layout
+
+\begin_layout Standard
+La investigación abarca cuatro temas clave:
+\end_layout
+
+\begin_layout Itemize
+Seguridad cibernética 
+\end_layout
+
+\begin_layout Itemize
+Computación social y móvil Sistemas paralelos y distribuidos 
+\end_layout
+
+\begin_layout Itemize
+La optimización multicriterio 
+\end_layout
+
+\begin_layout Itemize
+Modelado matemático.
+\end_layout
+
+\begin_layout Standard
+Estas cuestiones fundamentales se basan en cuestiones de escala y complejidad,
+ con especial énfasis en la interacción hombre / sistemas.
+ La mayor parte de la investigación se lleva a cabo en colaboración con
+ colegas internacionales (en Europa, EE.UU., Singapur y Australia).
+\end_layout
+
+\begin_layout Subsection
+Universidad de Aalto - Finlandia
+\end_layout
+
+\begin_layout Standard
+La UA cuenta, dentro de su plan de maestráis , con el de Sistemas complejos
+ el cual tiene como objetivo dar a los estudiantes una sólida base computacional
+ y teórica para la comprensión de sistemas complejos, desde el cerebro humano
+ a una diversidad de sistemas biológicos y sociales.
+ El temario se ha estructurado de tal manera que el estudiante puede elegir
+ qué áreas enfatizar (por ejemplo, neurociencia, teoría de sistemas complejos,
+ aprendizaje de máquina).
+ Después de completar sus estudios, los estudiantes tienen las habilidades
+ necesarias para carreras científicas interdisciplinarias, o, p.
+ Para las posiciones de científico de datos en la industria.
+\end_layout
+
+\begin_layout Subsection
+Centro de Investigación de Sistemas Complejos de la Universidad de Cranfield
+ - Gran Bretaña
+\end_layout
+
+\begin_layout Standard
+El Centro de Investigación de Sistemas Complejos (CSRC) tiene como objetivo
+ desarrollar y aplicar la teoría de sistemas complejos a los problemas del
+ mundo real relativos a los sistemas de infraestructura.
+ La ciencia de la complejidad proporciona una perspectiva científica global
+ para la investigación con relevancia práctica.
+ Leer menos
+\end_layout
+
+\begin_layout Standard
+En los sistemas complejos del CSRC, el pensamiento de los sistemas se aplica
+ a una amplia variedad de cuestiones, centrándose en los sistemas de infraestruc
+tura y las redes de suministro y apoyado principalmente mediante la financiación
+ de los Consejos de Investigación del Reino Unido y la Unión Europea.
+ La investigación realizada abarca una amplia gama de temas, tales como:
+ innovación en nuevos servicios y modelos de negocio; Tecnológicas, conductuales
+ y de políticas hacia sistemas resilientes y sostenibles; Y los mecanismos
+ que explican la interdependencia, la retroalimentación y la coevolución
+ de sistemas multi-escala, espaciales y temporales.
+\end_layout
+
+\begin_layout Subsection
+Universidad de Uppsala - Suecia
+\end_layout
+
+\begin_layout Standard
+La universidad de Uppsala cuenta con el estudio de maestria enfocado en
+ el Modelado de los Sistemas Complejos.
+\end_layout
+
+\begin_layout Standard
+El curso presentará las herramientas de matemáticas, física e informática
+ que se han utilizado en la comprensión de sistemas complejos.
+\end_layout
+
+\begin_layout Section
+Empresas que utilicen los Sistemas Complejos
+\end_layout
+
+\begin_layout Subsection
+CosmoTech
+\end_layout
+
+\begin_layout Standard
+Cosmo Tech fue co-fundada por Michel Morvan y Hugues de Bantel como The
+ CoSMo Company en Lyon, Francia.
+\end_layout
+
+\begin_layout Standard
+Lo que distingue a Cosmo Tech es más que su enfoque de sistemas complejos.
+ La tecnología que apoya este enfoque y capacita a los clientes para tomar
+ decisiones óptimas se basa en un lenguaje de programación exclusivo y propietar
+io y en la metodología de modelado de sistemas que permite a Cosmo Tech
+ modelar todo tipo de sistemas industriales, sociales y naturales.
+\end_layout
+
+\begin_layout Standard
+Estos sistemas se modelan en la Cosmo Tech Simulation Suite (CSS), una interfaz
+ gráfica de fácil uso donde se puede representar cualquier tipo de sistema
+ - industrial, financiero, social, natural -.
+ Una vez modelados en el CSS, los sistemas pueden ser entregados a los usuarios
+ finales como aplicaciones específicas de dominio que permiten y animan
+ a los usuarios a ejecutar múltiples escenarios de 'si ocurre', optimizar
+ las estrategias de acuerdo con los KPIs nominados y determinar la decisión
+ óptima de tomar en un Circunstancia futura específica.
+\end_layout
+
+\begin_layout Standard
+Quizás el adoptante más prominente del software de Cosmo Tech ha sido RTE,
+ el principal operador francés del sistema de transmisión de electricidad,
+ que ha adoptado la aplicación de optimización de inversiones de Cosmo Tech.
+ La aplicación de innovación de Cosmo Tech ha permitido a RTE identificar
+ reducciones potenciales en riesgo y gastos de más del 14%, y potenciales
+ reducciones en conflictos operacionales del 20%.
+\end_layout
+
+\begin_layout Subsection
+CSI
+\end_layout
+
+\begin_layout Standard
+CSI Complex Systems, Inc.
+ desarrolla soluciones de software de finanzas comerciales para bancos y
+ clientes corporativos en los Estados Unidos e internacionalmente.
+ La empresa ofrece Global Processing System que facilita la gestión de las
+ tareas de procesamiento de la cadena de suministro comercial y no comercial;
+ Global SLA, una solución para gestionar los acuerdos de nivel de servicio
+ entre los clientes externos e internos del banco; Y OpenTrade, una plataforma
+ colaborativa basada en Internet para el flujo de trabajo de la cadena de
+ suministro, la colaboración de socios de la cadena de suministro, la gestión
+ de documentos, el cumplimiento y las aplicaciones de conciliación.
+\end_layout
+
+\begin_layout Subsection
+ScalabBLE
+\end_layout
+
+\begin_layout Standard
+Uno de los objetivos que nos hemos marcado en scalabBle es analizar nuevos
+ modelos de gestión, poner en práctica y hacer públicas nuestras experiencias.
+ Por ello, uno de los ámbitos más relevantes es, precisamente, el diseño
+ organizativo.
+ Estamos convencidos que la forma en que nos organizamos y comunicamos tiene
+ un impacto determinante en la eficacia de los resultados que conseguimos.
+ Por tanto, merece un análisis detallado y pormenorizado
+\end_layout
+
+\begin_layout Standard
+Los sistemas complejos están formados por elementos que interactúan buscando
+ lograr una meta o finalidad común, y donde esas relaciones (o interacciones)
+ no son lineales (entendiendo lineal como causa-efecto), es decir, cada
+ interacción genera cambios en el escenario imposibles de predecir.
+ Para describir sistemas complejos hace falta no sólo conocer el funcionamiento
+ de las partes, sino conocer el funcionamiento del sistema complejo una
+ vez relacionadas sus partes entre sí.
+\end_layout
+
+\begin_layout Section
+Sistemas Complejos y agentes 
+\end_layout
+
+\begin_layout Subsection
+Agentes
+\end_layout
+
+\begin_layout Standard
+Una tendencia en muchos sistemas ahora es diseñar objetos que reaccionan
+ ante eventos en su entorno, estos se conocen como objetos activos o como
+ agentes, a partir de esto aparecen los Sistemas Complejos Adaptables
+\end_layout
+
+\begin_layout Standard
+Los Sistemas Complejos Adaptables tienen como características:
+\end_layout
+
+\begin_layout Enumerate
+Es un sistema compuesto de muchos individuos Partes o agentes.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Las partes individuales, o agentes siguen reglas sencillas 
+\end_layout
+
+\begin_layout Enumerate
+No hay líder o individuo que está coordinando la acción de otros.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Mediante las interacciones de los agentes se generan patrones emergentes
+\end_layout
+
+\begin_layout Enumerate
+Si se alteran elementos del sistema, el sistema se adapta o reacciona
+\end_layout
+
+\begin_layout Enumerate
+Cualquier interacción puede retroalimentarse directamente sobre sí misma
+ o después de una serie de etapas intermedias, esto se conoce como recurrencia
+ 
+\end_layout
+
+\begin_layout Enumerate
+El comportamiento global del sistema de elementos no está predicho por el
+ comportamiento de los elementos individuales 
+\end_layout
+
+\begin_layout Enumerate
+Tales sistemas pueden estar abiertos y puede ser difícil o imposible definir
+ los límites del sistema 
+\end_layout
+
+\begin_layout Enumerate
+Los sistemas complejos operan en condiciones de lejos del equilibrio.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Tiene que haber un flujo constante de energía para mantener la organización
+ del sistema 
+\end_layout
+
+\begin_layout Enumerate
+Los sistemas complejos tienen una historia.
+ Ellos evolucionan y su pasado es co-responsable de su comportamiento actual
+ 
+\end_layout
+
+\begin_layout Enumerate
+Los elementos del sistema pueden ignorar el comportamiento del sistema en
+ su conjunto, respondiendo sólo a la información o estímulos físicos disponibles
+ a nivel local
+\end_layout
+
+\begin_layout Standard
+La complejidad es causada por el comportamiento colectivo de muchos agentes
+ interactivos básicos.
+ Tales agentes pueden producir fenómenos cotidianos como colonias de hormigas,
+ atascos de tráfico, mercados de valores, ecosistemas forestales y sistemas
+ de cadena de suministro.
+ Los sistemas complejos, sin embargo, no tienen que ser complicados.
+\end_layout
+
+\begin_layout Standard
+Los agentes pueden trabajar como individuos no interactivos o como conjunto
+ colectivo.
+\end_layout
+
+\begin_layout Standard
+Los SCA se modelan de vez en cuando por medio de modelos basados en agentes
+ y modelos basados en redes complejas.
+ Los modelos basados en agentes se desarrollan mediante diversos métodos
+ y herramientas, principalmente mediante la identificación de los diferentes
+ agentes dentro del modelo.
+ Otro método de desarrollo de modelos para SCA implica el desarrollo de
+ modelos de red complejos mediante el uso de datos de interacción de diversos
+ componentes.
+\end_layout
+
+\begin_layout Standard
+Un modelo basado en agentes (ABM) es uno de una clase de modelos computacionales
+ para simular las acciones e interacciones de agentes autónomos, tanto entidades
+ individuales como colectivas como organizaciones o grupos, con el fin de
+ evaluar sus efectos sobre el sistema como un todo .
+ Combina elementos de teoría de juegos, sistemas complejos, emergencias,
+ sociología computacional, sistemas multi-agentes y programación evolutiva.
+ Los métodos de Monte Carlo se utilizan para introducir aleatoriedad.
+ Particularmente dentro de la ecología, los ABM también se denominan modelos
+ basados en individuos (IBMs), y los individuos dentro de IBM pueden ser
+ más simples que los agentes completamente autónomos dentro de los ABM.
+ El modelado basado en agentes está relacionado con el concepto de sistemas
+ multi-agentes o con la simulación multi-agente, pero distinto de éste,
+ en el sentido de que la meta de ABM es buscar una comprensión explicativa
+ del comportamiento colectivo de agentes que obedecen reglas simples, típicament
+e en sistemas naturales , En lugar de diseñar agentes o resolver problemas
+ prácticos o de ingeniería específicos.
+\end_layout
+
+\begin_layout Subsection
+Modelo Matemático de los agentes 
+\end_layout
+
+\begin_layout Subsection
+Ejemplos
+\end_layout
+
+\begin_layout Subsubsection
+Microfono y Bocina
+\end_layout
+
+\begin_layout Standard
+Un ejemplo clásico es la retroalimentación de audio.
+ En este sistema existen dos partes: un altavoz y un micrófono.
+ ¿Qué Ocurre cuando cerramos el bucle girando el altavoz y el micrófono
+ para que estén uno contra el otro? El micrófono recibe algo de sonido y
+ lo envía más alto a través de el altavoz.
+ Entonces ese sonido vuelve de nuevo, sale más fuerte, entonces se creó
+ un bucle, un círculo vicioso, produciendo un chillido agudo.
+\end_layout
+
+\begin_layout Section
+Referencias
+\end_layout
+
+\begin_layout Enumerate
+http://uncomp.uwe.ac.uk/LCCOMP/Principal.html
+\end_layout
+
+\begin_layout Enumerate
+http://www.gdl.cinvestav.mx/computacion/index.php?page=temarios
+\end_layout
+
+\begin_layout Enumerate
+http://www.ifuap.buap.mx/PNPC/DCF/f_Lineas_generacion_conocimiento.pdf
+\end_layout
+
+\begin_layout Enumerate
+https://sites.google.com/site/uamxpecci/proyecto/instituciones
+\end_layout
+
+\begin_layout Enumerate
+http://www.repositoriodigital.ipn.mx/bitstream/123456789/16877/1/Genaro_CCSIPN2013.p
+df
+\end_layout
+
+\begin_layout Enumerate
+http://hcu.uaz.edu.mx/documents/48606/a7b2d06d-9d9e-4753-a1fc-c8bc7cda161a
+\end_layout
+
+\begin_layout Enumerate
+http://comunidad.escom.ipn.mx/sistemascomplejos/institutions.html
+\end_layout
+
+\begin_layout Enumerate
+http://abaco.izt.uam.mx/investigacion/fisica-de-sistemas-complejos.php
+\end_layout
+
+\begin_layout Enumerate
+http://www.gaceta.unam.mx/20151103/el-centro-de-ciencias-de-la-complejidad-puente-a
+cademico/
+\end_layout
+
+\begin_layout Enumerate
+http://www.conacytprensa.mx/index.php/sociedad/politica-cientifica/3824-ojo-publica
+r-hoy-se-inauguran-las-instalaciones-del-c3-de-la-unam
+\end_layout
+
+\begin_layout Enumerate
+http://complejidad.uacm.edu.mx/index.php/sintesis-del-plan-de-estudios
+\end_layout
+
+\begin_layout Enumerate
+http://sydney.edu.au/complex-systems/
+\end_layout
+
+\begin_layout Enumerate
+https://www.uvm.edu/~cmplxsys/teaching-learning/ms-in-complex-systems-and-data-sci
+ence/
+\end_layout
+
+\begin_layout Enumerate
+https://en.unito.it/sites/sten/files/call_phd_33.pdf
+\end_layout
+
+\begin_layout Enumerate
+https://www.cardiff.ac.uk/computer-science/research/groups/complex-systems
+\end_layout
+
+\begin_layout Enumerate
+http://www.aalto.fi/en/masters/complex-systems
+\end_layout
+
+\begin_layout Enumerate
+https://www.cranfield.ac.uk/som/research-centres/complex-systems-research-centre#
+\end_layout
+
+\begin_layout Enumerate
+https://www.uu.se/en/
+\end_layout
+
+\begin_layout Enumerate
+https://cosmotech.com/platform/methodology/
+\end_layout
+
+\end_body
+\end_document

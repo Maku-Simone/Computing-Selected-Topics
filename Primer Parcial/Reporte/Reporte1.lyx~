@@ -1,0 +1,3530 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Juego de la Vida y Analizador
+\end_layout
+
+\begin_layout Author
+Frías Mercado Carlos Elliot
+\end_layout
+
+\begin_layout Standard
+\align center
+3CM6
+\end_layout
+
+\begin_layout Standard
+\align center
+Computing Selected Topics
+\end_layout
+
+\begin_layout Standard
+\align center
+Prof: Genaro Juárez Martínez
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Juego de la Vida
+\end_layout
+
+\begin_layout Subsection
+Descripción del programa
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+Este programa permite simular el algoritmo conocido como Juego de la Vida
+ de Conway.
+ Contiene células las cuales se representan en el tablero a través de un
+ cuadrito de un color a elegir, estando algunas vivas y otras muertas, además
+ se puede controlar la velocidad con la que
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+cada iteración va cambiando.
+ Se puede iniciar la simulación desde un archivo precargado, dibujada por
+ el usuario o aleatoriamente.
+ El tamaño máximo del tablero (o cantidad máxima de células) es de 1000
+ y el mínimo es de 10.
+\end_layout
+
+\begin_layout Subsection
+Pruebas del funcionamiento
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename G1.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 1: Inicialización del simulador con valores aleatorios
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename G2.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 2: Cambio de colores del programa
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename G3.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 3: Patrón introducido por el usuario
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename G4.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Figura 4: Patrón del usuario tras 1800 Iteraciones
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename G5.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 5: Formato guardado en un archivo y luego recargado
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename G6.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Figura 6: Aspecto del archivo guardado
+\end_layout
+
+\begin_layout Subsection
+Codigo fuente
+\end_layout
+
+\begin_layout Subsubsection
+Clase Universo
+\end_layout
+
+\begin_layout LyX-Code
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  
+\end_layout
+
+\begin_layout LyX-Code
+* To change this template file, choose Tools | Templates  
+\end_layout
+
+\begin_layout LyX-Code
+* and open the template in the editor.
+  */ 
+\end_layout
+
+\begin_layout LyX-Code
+package gol;
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Color; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Dimension; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Graphics; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Graphics2D; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Point; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseEvent; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseListener; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseWheelEvent; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseWheelListener; 
+\end_layout
+
+\begin_layout LyX-Code
+import javax.swing.JPanel; 
+\end_layout
+
+\begin_layout LyX-Code
+import logica.Dios;
+\end_layout
+
+\begin_layout LyX-Code
+import logica.Vida;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */ 
+\end_layout
+
+\begin_layout LyX-Code
+class Universo extends JPanel  {       
+\end_layout
+
+\begin_layout LyX-Code
+ int[][] m;     
+\end_layout
+
+\begin_layout LyX-Code
+   int tam, click, tamCelula = 10, tiempo; //tam = num de celulas     
+\end_layout
+
+\begin_layout LyX-Code
+   private Graphics2D g2d;       
+\end_layout
+
+\begin_layout LyX-Code
+ Color viva,  muerta;         
+\end_layout
+
+\begin_layout LyX-Code
+int[] regla = new int[4];         
+\end_layout
+
+\begin_layout LyX-Code
+Dios gg = new Dios();         
+\end_layout
+
+\begin_layout LyX-Code
+private int zoom = 0;        
+\end_layout
+
+\begin_layout LyX-Code
+private static final double ZOOM_AMOUNT = 1.1;    
+\end_layout
+
+\begin_layout LyX-Code
+    Universo ()             {                              }        
+\end_layout
+
+\begin_layout LyX-Code
+Universo(int[] regla, int tam, int tiempo, Color vi, Color mu)         
+\end_layout
+
+\begin_layout LyX-Code
+{                               
+\end_layout
+
+\begin_layout LyX-Code
+  this.regla = regla;       
+\end_layout
+
+\begin_layout LyX-Code
+     this.tam = tam;     
+\end_layout
+
+\begin_layout LyX-Code
+          setPreferredSize(new Dimension(tam*tamCelula,tam*tamCelula));
+ //x, y   
+\end_layout
+
+\begin_layout LyX-Code
+          m = gg.creaVida(tam);       
+\end_layout
+
+\begin_layout LyX-Code
+     this.tiempo = tiempo;           
+\end_layout
+
+\begin_layout LyX-Code
+ viva = vi;          
+\end_layout
+
+\begin_layout LyX-Code
+  muerta = mu;          
+\end_layout
+
+\begin_layout LyX-Code
+  this .addMouseListener(new MouseListener() 
+\end_layout
+
+\begin_layout LyX-Code
+{                                                      
+\end_layout
+
+\begin_layout LyX-Code
+  @Override                                 
+\end_layout
+
+\begin_layout LyX-Code
+                       public void mouseClicked(MouseEvent e)          
+                              
+\end_layout
+
+\begin_layout LyX-Code
+                         {                                             
+\end_layout
+
+\begin_layout LyX-Code
+                       int x, y;                                       
+                             
+\end_layout
+
+\begin_layout LyX-Code
+Point p = e.getPoint();                                          
+\end_layout
+
+\begin_layout LyX-Code
+y = (int) Math.floor((float)p.getX()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+x = (int) Math.floor((float)p.getY()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+if(x < tam && y < tam)                                                 
+                        
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+if(m[x][y] == 1)                                                       
+                          
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 0;                                                           
+                      
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+else                                                                   
+              
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 1;             
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+                                                                       
+          
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;                                                             
+                
+\end_layout
+
+\begin_layout LyX-Code
+repaint();                                                             
+           
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                 
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mousePressed(MouseEvent e) {                               
+                              
+\end_layout
+
+\begin_layout LyX-Code
+//throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseReleased(MouseEvent e) {                              
+                              
+\end_layout
+
+\begin_layout LyX-Code
+// throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseEntered(MouseEvent e) {                               
+                            
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                         
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseExited(MouseEvent e) {                                
+                           
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                         
+\end_layout
+
+\begin_layout LyX-Code
+}                                                     });              
+                 }
+\end_layout
+
+\begin_layout LyX-Code
+        
+\end_layout
+
+\begin_layout LyX-Code
+Universo(int[] regla, int tam, int tiempo, int cero, Color vi, Color mu)
+        
+\end_layout
+
+\begin_layout LyX-Code
+{                                  
+\end_layout
+
+\begin_layout LyX-Code
+this.regla = regla;            
+\end_layout
+
+\begin_layout LyX-Code
+this.tam = tam;                
+\end_layout
+
+\begin_layout LyX-Code
+setPreferredSize(new Dimension(tam*tamCelula,tam*tamCelula)); //x, y   
+          
+\end_layout
+
+\begin_layout LyX-Code
+m = gg.destruyeVida(tam);            
+\end_layout
+
+\begin_layout LyX-Code
+this.tiempo = tiempo;            
+\end_layout
+
+\begin_layout LyX-Code
+viva = vi;             
+\end_layout
+
+\begin_layout LyX-Code
+muerta = mu;             
+\end_layout
+
+\begin_layout LyX-Code
+this .addMouseListener(new MouseListener() {                            
+                             
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseClicked(MouseEvent e)                                 
+                                 
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                     
+\end_layout
+
+\begin_layout LyX-Code
+int x, y;                                                              
+       
+\end_layout
+
+\begin_layout LyX-Code
+Point p = e.getPoint();                                                 
+                    
+\end_layout
+
+\begin_layout LyX-Code
+y = (int) Math.floor((float)p.getX()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+x = (int) Math.floor((float)p.getY()/tamCelula);                         
+                                          
+\end_layout
+
+\begin_layout LyX-Code
+ if(x < tam && y < tam)                                                
+                         
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+      
+\end_layout
+
+\begin_layout LyX-Code
+if(m[x][y] == 1)                                                       
+                         
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+              
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 0;                                                           
+                      
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+else                                                                   
+              
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 1;                                                           
+                     
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+                                                                       
+         
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;                                                             
+                
+\end_layout
+
+\begin_layout LyX-Code
+repaint();                                                             
+           
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                       
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mousePressed(MouseEvent e) {                               
+                              
+\end_layout
+
+\begin_layout LyX-Code
+//throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseReleased(MouseEvent e) {                              
+                              
+\end_layout
+
+\begin_layout LyX-Code
+// throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseEntered(MouseEvent e) {                               
+                            
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseExited(MouseEvent e) {                                
+                           //  
+\end_layout
+
+\begin_layout LyX-Code
+throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }             
+                                        });                      
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                
+\end_layout
+
+\begin_layout LyX-Code
+Universo(int[] regla, int tam, int tiempo, int[][] car, Color vi, Color
+ mu)         
+\end_layout
+
+\begin_layout LyX-Code
+{                                  
+\end_layout
+
+\begin_layout LyX-Code
+this.regla = regla;             
+\end_layout
+
+\begin_layout LyX-Code
+this.tam = tam-2;
+\end_layout
+
+\begin_layout LyX-Code
+               
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println(this.tam);            
+\end_layout
+
+\begin_layout LyX-Code
+setPreferredSize(new Dimension(tam*tamCelula,tam*tamCelula)); //x, y   
+           
+\end_layout
+
+\begin_layout LyX-Code
+m = car;             
+\end_layout
+
+\begin_layout LyX-Code
+this.tiempo = tiempo;             
+\end_layout
+
+\begin_layout LyX-Code
+viva = vi;             
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;             
+\end_layout
+
+\begin_layout LyX-Code
+muerta = mu;             
+\end_layout
+
+\begin_layout LyX-Code
+this .addMouseListener(new MouseListener() {                            
+                             
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseClicked(MouseEvent e)                                 
+                                
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                    
+\end_layout
+
+\begin_layout LyX-Code
+int x, y;                                                              
+       
+\end_layout
+
+\begin_layout LyX-Code
+Point p = e.getPoint();                                                 
+                    
+\end_layout
+
+\begin_layout LyX-Code
+y = (int) Math.floor((float)p.getX()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+x = (int) Math.floor((float)p.getY()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+if(x < tam && y < tam)                                                 
+                        
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+if(m[x][y] == 1)                                                       
+                          
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 0;                                                           
+                      
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+      
+\end_layout
+
+\begin_layout LyX-Code
+else                                                                   
+              
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+             
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 1;                                                           
+                     
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+                                                                       
+          
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;                                                             
+               
+\end_layout
+
+\begin_layout LyX-Code
+repaint();                                                             
+            
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                 
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mousePressed(MouseEvent e) {                               
+                              
+\end_layout
+
+\begin_layout LyX-Code
+//throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseReleased(MouseEvent e) {                              
+                              
+\end_layout
+
+\begin_layout LyX-Code
+// throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseEntered(MouseEvent e) {                               
+                            
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseExited(MouseEvent e) {                                
+                           
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                         
+\end_layout
+
+\begin_layout LyX-Code
+                                                    
+\end_layout
+
+\begin_layout LyX-Code
+});                               
+\end_layout
+
+\begin_layout LyX-Code
+}                
+\end_layout
+
+\begin_layout LyX-Code
+@Override         
+\end_layout
+
+\begin_layout LyX-Code
+public void paintComponent(Graphics g)          
+\end_layout
+
+\begin_layout LyX-Code
+{             super.paintComponent(g);                     
+\end_layout
+
+\begin_layout LyX-Code
+if(click == 1)                             
+\end_layout
+
+\begin_layout LyX-Code
+{                     
+\end_layout
+
+\begin_layout LyX-Code
+click = 0;                    
+\end_layout
+
+\begin_layout LyX-Code
+// repaint();                 
+\end_layout
+
+\begin_layout LyX-Code
+}             
+\end_layout
+
+\begin_layout LyX-Code
+else          
+\end_layout
+
+\begin_layout LyX-Code
+      {                     
+\end_layout
+
+\begin_layout LyX-Code
+m = analiza(m, regla);                 
+\end_layout
+
+\begin_layout LyX-Code
+}             
+\end_layout
+
+\begin_layout LyX-Code
+g2d = (Graphics2D) g;	             
+\end_layout
+
+\begin_layout LyX-Code
+for(int i = 1; i <= tam; i++)                 
+\end_layout
+
+\begin_layout LyX-Code
+{                     
+\end_layout
+
+\begin_layout LyX-Code
+for(int j = 1; j <= tam; j++) 
+\end_layout
+
+\begin_layout LyX-Code
+if(m[i][j] == 1)                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                       
+\end_layout
+
+\begin_layout LyX-Code
+g2d.setColor(viva); 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.fillRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.drawRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy //x, y                                                           
+     
+\end_layout
+
+\begin_layout LyX-Code
+}                             else                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                     
+\end_layout
+
+\begin_layout LyX-Code
+g2d.setColor(muerta); 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.fillRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.drawRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy //x, y                             
+\end_layout
+
+\begin_layout LyX-Code
+}                         
+\end_layout
+
+\begin_layout LyX-Code
+}                 
+\end_layout
+
+\begin_layout LyX-Code
+}                        // repaint();             
+\end_layout
+
+\begin_layout LyX-Code
+try              
+\end_layout
+
+\begin_layout LyX-Code
+{                                                          
+\end_layout
+
+\begin_layout LyX-Code
+//System.out.println("tiempo " +tiempo);                 
+\end_layout
+
+\begin_layout LyX-Code
+Thread.sleep(tiempo);	           
+\end_layout
+
+\begin_layout LyX-Code
+ }          
+\end_layout
+
+\begin_layout LyX-Code
+catch (Exception e) {}   
+\end_layout
+
+\begin_layout LyX-Code
+     } //paint component            
+\end_layout
+
+\begin_layout LyX-Code
+public int[][] analiza(int[][]m, int[] regla)       
+\end_layout
+
+\begin_layout LyX-Code
+        {                     
+\end_layout
+
+\begin_layout LyX-Code
+Vida v = new Vida();                     
+\end_layout
+
+\begin_layout LyX-Code
+//System.out.println("hay"+regla[0]);                     
+\end_layout
+
+\begin_layout LyX-Code
+return v.existe(m,regla, tam);                
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+ public int[][] getMatriz()     
+\end_layout
+
+\begin_layout LyX-Code
+{         
+\end_layout
+
+\begin_layout LyX-Code
+return m;     
+\end_layout
+
+\begin_layout LyX-Code
+}          
+\end_layout
+
+\begin_layout LyX-Code
+}//class     
+\end_layout
+
+\begin_layout Subsubsection
+Clase Dios
+\end_layout
+
+\begin_layout LyX-Code
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  * To change this template file, choose Tools | Templates  * and open the
+ template in the editor.
+  */ package logica;
+\end_layout
+
+\begin_layout LyX-Code
+import java.util.Random;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */ 
+\end_layout
+
+\begin_layout LyX-Code
+public class Dios      
+\end_layout
+
+\begin_layout LyX-Code
+{         
+\end_layout
+
+\begin_layout LyX-Code
+public Dios(){}         
+\end_layout
+
+\begin_layout LyX-Code
+public int[][] creaVida(int tam)             
+\end_layout
+
+\begin_layout LyX-Code
+{                                
+\end_layout
+
+\begin_layout LyX-Code
+int[][] inicio = new int[tam + 2][tam + 2];                
+\end_layout
+
+\begin_layout LyX-Code
+Random r = new Random();                
+\end_layout
+
+\begin_layout LyX-Code
+for(int i = 1; i <= tam; i++)                
+\end_layout
+
+\begin_layout LyX-Code
+{                    
+\end_layout
+
+\begin_layout LyX-Code
+for(int j = 1; j <= tam; j++)                    
+\end_layout
+
+\begin_layout LyX-Code
+{                        
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+inicio[i][j] = r.nextInt(3);   
+\end_layout
+
+\begin_layout LyX-Code
+                                       
+\end_layout
+
+\begin_layout LyX-Code
+ }               
+\end_layout
+
+\begin_layout LyX-Code
+}               
+\end_layout
+
+\begin_layout LyX-Code
+return inicio;    
+\end_layout
+
+\begin_layout LyX-Code
+        }          
+\end_layout
+
+\begin_layout LyX-Code
+public int[][] destruyeVida(int tam)    
+\end_layout
+
+\begin_layout LyX-Code
+        {         
+\end_layout
+
+\begin_layout LyX-Code
+                    
+\end_layout
+
+\begin_layout LyX-Code
+int[][] fin = new int[tam + 2][tam + 2]; 
+\end_layout
+
+\begin_layout LyX-Code
+              for(int i = 1; i <= tam; i++)   
+\end_layout
+
+\begin_layout LyX-Code
+            {                    for(int j = 1; j <= tam; j++)      
+\end_layout
+
+\begin_layout LyX-Code
+              {                         fin[i][j] = 0;        
+\end_layout
+
+\begin_layout LyX-Code
+            }    
+\end_layout
+
+\begin_layout LyX-Code
+           }           
+\end_layout
+
+\begin_layout LyX-Code
+    return fin;           
+\end_layout
+
+\begin_layout LyX-Code
+ }         
+\end_layout
+
+\begin_layout LyX-Code
+   } 
+\end_layout
+
+\begin_layout Subsubsection
+Clase Escritor
+\end_layout
+
+\begin_layout LyX-Code
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  * To change this template file, choose Tools 
+\end_layout
+
+\begin_layout LyX-Code
+| Templates  * and open the template in the editor.
+  */ package logica;
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.BufferedReader; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.File; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.FileNotFoundException; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.FileReader; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.IOException; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.PrintWriter; 
+\end_layout
+
+\begin_layout LyX-Code
+import static java.lang.Character.getNumericValue;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */ 
+\end_layout
+
+\begin_layout LyX-Code
+public class Escritor      
+\end_layout
+
+\begin_layout LyX-Code
+{        
+\end_layout
+
+\begin_layout LyX-Code
+public  Escritor()             
+\end_layout
+
+\begin_layout LyX-Code
+{                      }        
+\end_layout
+
+\begin_layout LyX-Code
+public int escribe(int[][] m)           
+\end_layout
+
+\begin_layout LyX-Code
+ {                 
+\end_layout
+
+\begin_layout LyX-Code
+try                     {              
+\end_layout
+
+\begin_layout LyX-Code
+              
+\end_layout
+
+\begin_layout LyX-Code
+PrintWriter writer = new PrintWriter("1.txt", "UTF-8");     
+\end_layout
+
+\begin_layout LyX-Code
+                                                               
+\end_layout
+
+\begin_layout LyX-Code
+for(int i = 0; i < m.length; i++)                                 
+\end_layout
+
+\begin_layout LyX-Code
+{                                     
+\end_layout
+
+\begin_layout LyX-Code
+for(int j = 0; j < m.length; j++)                                       
+\end_layout
+
+\begin_layout LyX-Code
+ {                                             
+\end_layout
+
+\begin_layout LyX-Code
+writer.print(m[i][j]);                                       
+\end_layout
+
+\begin_layout LyX-Code
+ }                                     
+\end_layout
+
+\begin_layout LyX-Code
+writer.println("");                                 
+\end_layout
+
+\begin_layout LyX-Code
+}                     
+\end_layout
+
+\begin_layout LyX-Code
+ writer.close();                  
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+   return 1;                    
+\end_layout
+
+\begin_layout LyX-Code
+}                
+\end_layout
+
+\begin_layout LyX-Code
+ catch (IOException e)                      
+\end_layout
+
+\begin_layout LyX-Code
+   {                           
+\end_layout
+
+\begin_layout LyX-Code
+return 0;   
+\end_layout
+
+\begin_layout LyX-Code
+                     
+\end_layout
+
+\begin_layout LyX-Code
+}             
+\end_layout
+
+\begin_layout LyX-Code
+}        
+\end_layout
+
+\begin_layout LyX-Code
+public int[][] lee(File f) throws FileNotFoundException, IOException   
+      
+\end_layout
+
+\begin_layout LyX-Code
+   {                 
+\end_layout
+
+\begin_layout LyX-Code
+int[][] x;               
+\end_layout
+
+\begin_layout LyX-Code
+ int i = 0, j = 0, tam = 0;                 
+\end_layout
+
+\begin_layout LyX-Code
+String c = "", d;                 
+\end_layout
+
+\begin_layout LyX-Code
+if(f!=null)                    
+\end_layout
+
+\begin_layout LyX-Code
+{                             
+\end_layout
+
+\begin_layout LyX-Code
+FileReader archivos=new FileReader(f);                        
+\end_layout
+
+\begin_layout LyX-Code
+BufferedReader lee=new BufferedReader(archivos);                       
+ 
+\end_layout
+
+\begin_layout LyX-Code
+//c+= lee.readLine();                        
+\end_layout
+
+\begin_layout LyX-Code
+while((d = lee.readLine()) !=null)                      
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+                                                
+\end_layout
+
+\begin_layout LyX-Code
+tam++;                                     
+\end_layout
+
+\begin_layout LyX-Code
+c += d;                                 /
+\end_layout
+
+\begin_layout LyX-Code
+/System.out.println("c es "+c);                                          
+                 
+\end_layout
+
+\begin_layout LyX-Code
+}                           
+\end_layout
+
+\begin_layout LyX-Code
+lee.close();                            
+\end_layout
+
+\begin_layout LyX-Code
+x = new int[tam][tam];                                                 
+                                       
+\end_layout
+
+\begin_layout LyX-Code
+for(int k = 0; k < c.length(); k++)                         
+\end_layout
+
+\begin_layout LyX-Code
+{                                
+\end_layout
+
+\begin_layout LyX-Code
+String car = "";                             
+\end_layout
+
+\begin_layout LyX-Code
+car += c.charAt(k);                                
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print("["+car+"]");                                           
+          
+\end_layout
+
+\begin_layout LyX-Code
+if(j == tam )                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println("");                                                  
+        
+\end_layout
+
+\begin_layout LyX-Code
+i++;                                  
+\end_layout
+
+\begin_layout LyX-Code
+j = 0;                                 
+\end_layout
+
+\begin_layout LyX-Code
+k--;                             
+\end_layout
+
+\begin_layout LyX-Code
+}                            
+\end_layout
+
+\begin_layout LyX-Code
+else                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                 
+\end_layout
+
+\begin_layout LyX-Code
+x[i][j] = Integer.parseInt(car);                                 
+\end_layout
+
+\begin_layout LyX-Code
+j++;                             
+\end_layout
+
+\begin_layout LyX-Code
+}                         
+\end_layout
+
+\begin_layout LyX-Code
+}//while2                                                       
+\end_layout
+
+\begin_layout LyX-Code
+return x;                      
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+  //if              
+\end_layout
+
+\begin_layout LyX-Code
+  else 
+\end_layout
+
+\begin_layout LyX-Code
+                   {                        
+\end_layout
+
+\begin_layout LyX-Code
+x = new int[10][10];                         
+\end_layout
+
+\begin_layout LyX-Code
+for(i = 0; i < 10; i++)                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                 
+\end_layout
+
+\begin_layout LyX-Code
+for(j = 0; j < 10; j++)                                     
+\end_layout
+
+\begin_layout LyX-Code
+{                                         
+\end_layout
+
+\begin_layout LyX-Code
+x[i][j] = 0;                                     
+\end_layout
+
+\begin_layout LyX-Code
+}                             
+\end_layout
+
+\begin_layout LyX-Code
+}                         
+\end_layout
+
+\begin_layout LyX-Code
+return x;                     
+\end_layout
+
+\begin_layout LyX-Code
+}                             
+\end_layout
+
+\begin_layout LyX-Code
+}//funcion lee     
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout Subsubsection
+Clase Vida
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+\align block
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  * 
+\end_layout
+
+\begin_layout LyX-Code
+\align block
+To change this template file, choose Tools | Templates  * and open the template
+ in the editor.
+  */ package logica;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */     
+\end_layout
+
+\begin_layout LyX-Code
+   import java.io.*; import java.util.*; public class Vida      
+\end_layout
+
+\begin_layout LyX-Code
+{                     
+\end_layout
+
+\begin_layout LyX-Code
+public Vida()                  
+\end_layout
+
+\begin_layout LyX-Code
+\align block
+{                                  
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                
+\end_layout
+
+\begin_layout LyX-Code
+public int[][] existe (int[][] m, int[] regla, int tam)                
+         
+\end_layout
+
+\begin_layout LyX-Code
+{                                 int fila, colum, vec;                
+                 
+\end_layout
+
+\begin_layout LyX-Code
+fila = tam;                                 colum = fila;              
+                                                   
+\end_layout
+
+\begin_layout LyX-Code
+//Random vida = new Random();                                 
+\end_layout
+
+\begin_layout LyX-Code
+//Integer[][] m = new Integer[fila+2][colum+2];                        
+         
+\end_layout
+
+\begin_layout LyX-Code
+int[][] aux    = new int[fila+2][colum+2];                             
+  
+\end_layout
+
+\begin_layout LyX-Code
+//  Integer[][][] saves = new Integer[fila+2][colum+2][10]; //[fila][columna][in
+dice]                              
+\end_layout
+
+\begin_layout LyX-Code
+//   Integer[][] saves2 = new Integer[fila+2][colum+2]; //[fila][columna][indice
+]                                                      
+\end_layout
+
+\begin_layout LyX-Code
+                                                
+\end_layout
+
+\begin_layout LyX-Code
+for(int i = 1; i <= fila; i++) //analizar vida                         
+                                        
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+   
+\end_layout
+
+\begin_layout LyX-Code
+for(int j = 1; j <= colum; j++)                                        
+                                         
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+                 
+\end_layout
+
+\begin_layout LyX-Code
+vec = 0;                                                               
+                      
+\end_layout
+
+\begin_layout LyX-Code
+vec += m[i-1][j-1] + m[i-1][j] + m[i-1][j+1]; //las de arriba          
+                                                                       
+   
+\end_layout
+
+\begin_layout LyX-Code
+vec += m[i][j-1]   			   + m[i][j+1]; //las de al lado                 
+                                                                    
+\end_layout
+
+\begin_layout LyX-Code
+vec += m[i+1][j-1] + m[i+1][j] + m[i+1][j+1]; //las de abajo           
+                                                                       
+              
+\end_layout
+
+\begin_layout LyX-Code
+if(m[i][j] == 1) //[fila][columna]  Si está viva entonces:             
+                                                                       
+             
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+                                                                       
+                                 
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+if(vec < regla[0]) //morir de aislamiento :c  Smin                     
+                                                                       
+            
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+        {                                                              
+                                                           
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+aux[i][j] = 0;                                                         
+                                                       
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+}                                                                      
+                                  
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+if(vec > regla[2]) //morir de sobrepoblacion	Smax                      
+                                                                       
+                    
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+{                                                                      
+                                                
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+aux[i][j] = 0;                                                         
+                                                       
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+}                                                                      
+                                  
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+if(vec >= regla[1] && vec <= regla[2]) //sobrevivir :3                 
+                                                                       
+                         
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+{                                                                      
+                                                   
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+aux[i][j] = 1;                                                         
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+}                                                                      
+                          
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+}                                                                      
+                  
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+else //si está muerta                                                  
+                                               
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+{                                                                      
+                                                                       
+                                                                    
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+if(vec == regla[3]) //nacer *3* //Tiene 3 vecinos B                    
+                              
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+                                                             
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+{                                                                      
+                                                   
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+aux[i][j] = 1;                                                         
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+}                                                                      
+                                   
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+else                                                                   
+                                              
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+{                                                                      
+                                                   
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+aux[i][j] = 0;                                                         
+                                                     
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+  }
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+                                                                       
+                        
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+} //else muerta                                                        
+                         
+\end_layout
+
+\begin_layout LyX-Code
+\align left
+}//for columa
+\end_layout
+
+\begin_layout LyX-Code
+                                                                
+\end_layout
+
+\begin_layout LyX-Code
+} //for fila analizar vida                                        
+\end_layout
+
+\begin_layout LyX-Code
+return aux;                                         
+\end_layout
+
+\begin_layout LyX-Code
+}//main         }//clase
+\end_layout
+
+\begin_layout LyX-Code
+     
+\end_layout
+
+\begin_layout Section
+Analizador
+\end_layout
+
+\begin_layout Subsection
+Descripción del programa
+\end_layout
+
+\begin_layout Standard
+\align block
+Este programa se encarga de meterse dentro del juego de la vida (únicamente
+ con 10 iteraciones) y trata de encontrar dentro de él los 3 tipos principales
+ de elementos que se pueden formar (Glider, Still Life o Flip Flop).
+ Lo eraliza diviendo todo el universo de células vivas y muertas en pequeñas
+ secciones de 3x3 dentro de las cuales analiza el patrón de comportamiento
+ obtenido al sumar un arreglo tridimensional de cada iteración de células
+ vivas.
+\end_layout
+
+\begin_layout Subsection
+Pruebas del funcionamiento
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A1.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 7: Inicio del simulador y analizador aleatoriamente.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A2.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 8: Análisis final generado tras las 10 iteraciones.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A3.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 9: Archivo generado en el programa anterior, cargado dentro de éste
+ y con nuevos colores.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A4.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 10: Sistema configurado por el usuario.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A5.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 11: Archivo generado al guardar el analizador.
+\end_layout
+
+\begin_layout Subsection
+Codigo fuente
+\end_layout
+
+\begin_layout Subsubsection
+Clase Escritor
+\end_layout
+
+\begin_layout LyX-Code
+/*  
+\end_layout
+
+\begin_layout LyX-Code
+* To change this license header, choose License Headers in Project Properties.
+  
+\end_layout
+
+\begin_layout LyX-Code
+* To change this template file, choose Tools | Templates  
+\end_layout
+
+\begin_layout LyX-Code
+* and open the template in the editor.
+  
+\end_layout
+
+\begin_layout LyX-Code
+*/ 
+\end_layout
+
+\begin_layout LyX-Code
+package logica;
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.BufferedReader; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.File; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.FileNotFoundException; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.FileReader; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.IOException; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.io.PrintWriter; 
+\end_layout
+
+\begin_layout LyX-Code
+import static java.lang.Character.getNumericValue;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * 
+\end_layout
+
+\begin_layout LyX-Code
+@author Maku  */ 
+\end_layout
+
+\begin_layout LyX-Code
+public class Escritor      
+\end_layout
+
+\begin_layout LyX-Code
+{      
+\end_layout
+
+\begin_layout LyX-Code
+ public  Escritor()       
+\end_layout
+
+\begin_layout LyX-Code
+     {             
+\end_layout
+
+\begin_layout LyX-Code
+        }    
+\end_layout
+
+\begin_layout LyX-Code
+   public int escribe(int[][] m, int ff, int gl, int sl)     
+\end_layout
+
+\begin_layout LyX-Code
+       {
+\end_layout
+
+\begin_layout LyX-Code
+               try
+\end_layout
+
+\begin_layout LyX-Code
+                    {
+\end_layout
+
+\begin_layout LyX-Code
+                            PrintWriter writer = new PrintWriter("Bitacora.txt",
+ "UTF-8");
+\end_layout
+
+\begin_layout LyX-Code
+                            for(int i = 0; i < m.length; i++)
+\end_layout
+
+\begin_layout LyX-Code
+                                {
+\end_layout
+
+\begin_layout LyX-Code
+                                    for(int j = 0; j < m.length; j++)
+\end_layout
+
+\begin_layout LyX-Code
+                                        {
+\end_layout
+
+\begin_layout LyX-Code
+                                            if(m[i][j] == 1
+\end_layout
+
+\begin_layout LyX-Code
+)                                                 {
+\end_layout
+
+\begin_layout LyX-Code
+                                                    writer.print(m[i][j]);
+\end_layout
+
+\begin_layout LyX-Code
+                                                }
+\end_layout
+
+\begin_layout LyX-Code
+                                            else
+\end_layout
+
+\begin_layout LyX-Code
+                                            {
+\end_layout
+
+\begin_layout LyX-Code
+                                                writer.print(0);
+\end_layout
+
+\begin_layout LyX-Code
+                                            }
+\end_layout
+
+\begin_layout LyX-Code
+                                        }
+\end_layout
+
+\begin_layout LyX-Code
+                                    writer.println("");
+\end_layout
+
+\begin_layout LyX-Code
+                                }
+\end_layout
+
+\begin_layout LyX-Code
+                      writer.println("Con 10 iteraciones existen");
+\end_layout
+
+\begin_layout LyX-Code
+                     writer.println("" + ff + " posibles Flip Flops");
+\end_layout
+
+\begin_layout LyX-Code
+                            writer.println(" " + gl + " posibles Gliders");
+\end_layout
+
+\begin_layout LyX-Code
+                            writer.println(" " + sl + " posibles Still Lifes");
+\end_layout
+
+\begin_layout LyX-Code
+                            writer.close();
+\end_layout
+
+\begin_layout LyX-Code
+                     return 1;
+\end_layout
+
+\begin_layout LyX-Code
+                    }
+\end_layout
+
+\begin_layout LyX-Code
+                 catch (IOException e)
+\end_layout
+
+\begin_layout LyX-Code
+                         {
+\end_layout
+
+\begin_layout LyX-Code
+                          return 0;
+\end_layout
+
+\begin_layout LyX-Code
+                        }
+\end_layout
+
+\begin_layout LyX-Code
+            }
+\end_layout
+
+\begin_layout LyX-Code
+        public int[][] lee(File f) throws FileNotFoundException, IOException
+\end_layout
+
+\begin_layout LyX-Code
+            {
+\end_layout
+
+\begin_layout LyX-Code
+                int[][] x;
+\end_layout
+
+\begin_layout LyX-Code
+                int i = 0, j = 0, tam = 0;
+\end_layout
+
+\begin_layout LyX-Code
+                String c = "", d;
+\end_layout
+
+\begin_layout LyX-Code
+                if(f!=null)
+\end_layout
+
+\begin_layout LyX-Code
+                    {
+\end_layout
+
+\begin_layout LyX-Code
+                            FileReader archivos=new FileReader(f);
+\end_layout
+
+\begin_layout LyX-Code
+                       BufferedReader lee=new BufferedReader(archivos);
+\end_layout
+
+\begin_layout LyX-Code
+                       //c+= lee.readLine();
+\end_layout
+
+\begin_layout LyX-Code
+                       while((d = lee.readLine()) !=null)
+\end_layout
+
+\begin_layout LyX-Code
+                        {
+\end_layout
+
+\begin_layout LyX-Code
+                          tam++;
+\end_layout
+
+\begin_layout LyX-Code
+                           c += d;
+\end_layout
+
+\begin_layout LyX-Code
+                                //System.out.println("c es "+c);
+\end_layout
+
+\begin_layout LyX-Code
+                                                          }
+\end_layout
+
+\begin_layout LyX-Code
+                          lee.close();
+\end_layout
+
+\begin_layout LyX-Code
+                           x = new int[tam][tam];
+\end_layout
+
+\begin_layout LyX-Code
+                               for(int k = 0; k < c.length(); k++)
+\end_layout
+
+\begin_layout LyX-Code
+                        {
+\end_layout
+
+\begin_layout LyX-Code
+                               String car = "";
+\end_layout
+
+\begin_layout LyX-Code
+                            car += c.charAt(k);
+\end_layout
+
+\begin_layout LyX-Code
+                            System.out.print("["+car+"]");
+\end_layout
+
+\begin_layout LyX-Code
+                            if(j == tam )
+\end_layout
+
+\begin_layout LyX-Code
+                            {
+\end_layout
+
+\begin_layout LyX-Code
+                                System.out.println("");
+\end_layout
+
+\begin_layout LyX-Code
+                                 i++;
+\end_layout
+
+\begin_layout LyX-Code
+                                 j = 0;
+\end_layout
+
+\begin_layout LyX-Code
+                                k--;
+\end_layout
+
+\begin_layout LyX-Code
+                            }
+\end_layout
+
+\begin_layout LyX-Code
+                           else
+\end_layout
+
+\begin_layout LyX-Code
+                            {
+\end_layout
+
+\begin_layout LyX-Code
+                                x[i][j] = Integer.parseInt(car);
+\end_layout
+
+\begin_layout LyX-Code
+                                j++;
+\end_layout
+
+\begin_layout LyX-Code
+                            }
+\end_layout
+
+\begin_layout LyX-Code
+                        }//while2
+\end_layout
+
+\begin_layout LyX-Code
+                                                      return x;
+\end_layout
+
+\begin_layout LyX-Code
+                     }    //if
+\end_layout
+
+\begin_layout LyX-Code
+                else
+\end_layout
+
+\begin_layout LyX-Code
+                    {
+\end_layout
+
+\begin_layout LyX-Code
+                        x = new int[10][10];
+\end_layout
+
+\begin_layout LyX-Code
+                        for(i = 0; i < 10; i++)
+\end_layout
+
+\begin_layout LyX-Code
+                            {
+\end_layout
+
+\begin_layout LyX-Code
+                                for(j = 0; j < 10; j++)
+\end_layout
+
+\begin_layout LyX-Code
+                                    {
+\end_layout
+
+\begin_layout LyX-Code
+                                        x[i][j] = 0;
+\end_layout
+
+\begin_layout LyX-Code
+                                    }
+\end_layout
+
+\begin_layout LyX-Code
+                            }
+\end_layout
+
+\begin_layout LyX-Code
+                        return x;
+\end_layout
+
+\begin_layout LyX-Code
+                    }
+\end_layout
+
+\begin_layout LyX-Code
+                            }//funcion lee
+\end_layout
+
+\begin_layout LyX-Code
+    } 
+\end_layout
+
+\begin_layout Subsubsection
+Clase Divisor
+\end_layout
+
+\begin_layout LyX-Code
+/* * To change this license header, choose License Headers in Project Properties.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+* To change this template file, choose Tools | Templates 
+\end_layout
+
+\begin_layout LyX-Code
+* and open the template in the editor.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+*/ 
+\end_layout
+
+\begin_layout LyX-Code
+package logica;
+\end_layout
+
+\begin_layout LyX-Code
+import analizador.biatcora;
+\end_layout
+
+\begin_layout LyX-Code
+/** * * @author Maku */ 
+\end_layout
+
+\begin_layout LyX-Code
+public class Divisor
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+int[][][] saves;
+\end_layout
+
+\begin_layout LyX-Code
+int[][] saves2, ini; int sl = 0, gl = 0, ff = 0;
+\end_layout
+
+\begin_layout LyX-Code
+int[][] mini = new int[3][3];
+\end_layout
+
+\begin_layout LyX-Code
+int i0 = 1, i, j0 = 1, j, fil = 1, col = 1, tamSecc = 3, x = 0, y = 0, tam,
+ gens; //mm, l es mi contador de secciones //tamSecc = 3; 
+\end_layout
+
+\begin_layout LyX-Code
+Analiza an = new Analiza();
+\end_layout
+
+\begin_layout LyX-Code
+public Divisor(int[][][] saves, int tam, int gens, int[][] in)
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+this.saves = saves;
+\end_layout
+
+\begin_layout LyX-Code
+this.tam = tam;
+\end_layout
+
+\begin_layout LyX-Code
+this.gens = gens;
+\end_layout
+
+\begin_layout LyX-Code
+this.ini = in;
+\end_layout
+
+\begin_layout LyX-Code
+saves2 = new int[saves.length][saves.length];
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+public void analisis() {
+\end_layout
+
+\begin_layout LyX-Code
+for(int ii = 1; ii <= tam; ii++)
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+for(int jj = 1; jj <= tam; jj++)
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+saves2[ii][jj] = 0; //inicializo matriz de analisis
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+for(int ii = 1; ii <= tam; ii++) {
+\end_layout
+
+\begin_layout LyX-Code
+for(int jj = 1; jj <= tam; jj++) {
+\end_layout
+
+\begin_layout LyX-Code
+for(int kk = 0; kk < gens; kk++) {
+\end_layout
+
+\begin_layout LyX-Code
+saves2[ii][jj] += saves[ii][jj][kk]; //lleno mi matriz de analisis 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+for(int li = 1; li <= tam; li++)
+\end_layout
+
+\begin_layout LyX-Code
+{ for(int lj = 1; lj <= tam; lj++)
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print(saves2[li][lj]);
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print("
+\backslash
+n"); } //imprimo matriz de analisis
+\end_layout
+
+\begin_layout LyX-Code
+while(j0 <= tam)
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+if(i0 <= tam + 1) {
+\end_layout
+
+\begin_layout LyX-Code
+for(i = i0; i < (fil*tamSecc+1); i++) //dividiendo la matriz 
+\end_layout
+
+\begin_layout LyX-Code
+{ 
+\end_layout
+
+\begin_layout LyX-Code
+if(i > tam) { break; } 
+\end_layout
+
+\begin_layout LyX-Code
+for(j = j0 ; j < (col*tamSecc+1); j++)
+\end_layout
+
+\begin_layout LyX-Code
+{ if(j > tam) { break; } // 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print(i +","+ j +" "+ saves2[i][j]+" ");
+\end_layout
+
+\begin_layout LyX-Code
+mini[x][y] = saves2[i][j];
+\end_layout
+
+\begin_layout LyX-Code
+y++;//columnas } // 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print("|
+\backslash
+n"); 
+\end_layout
+
+\begin_layout LyX-Code
+y = 0; 
+\end_layout
+
+\begin_layout LyX-Code
+x++; 
+\end_layout
+
+\begin_layout LyX-Code
+if(x > 2) { // 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println("Mini tiene: 
+\backslash
+n"); 
+\end_layout
+
+\begin_layout LyX-Code
+/* for(int a = 0; a < 3; a++) 
+\end_layout
+
+\begin_layout LyX-Code
+{ 
+\end_layout
+
+\begin_layout LyX-Code
+for(int b = 0; b < 3; b++) 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print(mini[a][b]); 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.print("
+\backslash
+n"); }*/ 
+\end_layout
+
+\begin_layout LyX-Code
+if(an.FF(mini) == 1) 
+\end_layout
+
+\begin_layout LyX-Code
+{ 
+\end_layout
+
+\begin_layout LyX-Code
+ff++; 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println("POSIBLE FLIP FLOP ENCONTRADO
+\backslash
+n"); 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+if(an.SL(mini) == 1) 
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+sl++; 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println("POSIBLE STILL LIFE ENCONTRADO
+\backslash
+n"); 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+if(an.GL(mini) == 1) 
+\end_layout
+
+\begin_layout LyX-Code
+{ 
+\end_layout
+
+\begin_layout LyX-Code
+gl++; 
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println("POSIBLE GLIDER ENCONTRADO
+\backslash
+n"); 
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+x = 0; 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout LyX-Code
+i0 = fil*tamSecc+1; 
+\end_layout
+
+\begin_layout LyX-Code
+j0 = 1; 
+\end_layout
+
+\begin_layout LyX-Code
+fil++; //
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println("----------------------"); 
+\end_layout
+
+\begin_layout LyX-Code
+} else { i0 = 1; j0 = col*tamSecc+1; col++; } 
+\end_layout
+
+\begin_layout LyX-Code
+}//while analisis 
+\end_layout
+
+\begin_layout LyX-Code
+biatcora b = new biatcora(ff, gl, sl, ini);
+\end_layout
+
+\begin_layout LyX-Code
+b.setVisible(true); 
+\end_layout
+
+\begin_layout LyX-Code
+}//metodo analisis 
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout Subsubsection
+Clase Analiza
+\end_layout
+
+\begin_layout LyX-Code
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  
+\end_layout
+
+\begin_layout LyX-Code
+* To change this template file, choose Tools | Templates  
+\end_layout
+
+\begin_layout LyX-Code
+* and open the template in the editor.
+  */ 
+\end_layout
+
+\begin_layout LyX-Code
+package logica;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */ 
+\end_layout
+
+\begin_layout LyX-Code
+public class Analiza     
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+              public Analiza()
+\end_layout
+
+\begin_layout LyX-Code
+                    {
+\end_layout
+
+\begin_layout LyX-Code
+			        }
+\end_layout
+
+\begin_layout LyX-Code
+              public int FF(int[][] matriz)
+\end_layout
+
+\begin_layout LyX-Code
+                        {
+\end_layout
+
+\begin_layout LyX-Code
+                                int[] FFC = {0, 0, 0}; //{valor, i, j}
+\end_layout
+
+\begin_layout LyX-Code
+                                int max = 0;
+\end_layout
+
+\begin_layout LyX-Code
+                                int[] maxes = {0, 0, 0, 0}; 
+\end_layout
+
+\begin_layout LyX-Code
+                               while(max < 3)
+\end_layout
+
+\begin_layout LyX-Code
+                                        { 
+\end_layout
+
+\begin_layout LyX-Code
+                                           for(int i = 0; i < 3; i++)
+\end_layout
+
+\begin_layout LyX-Code
+                                                    {
+\end_layout
+
+\begin_layout LyX-Code
+                                                            for(int j =
+ 0; j < 3; j++)
+\end_layout
+
+\begin_layout LyX-Code
+                                                                    {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+     if(matriz[i][j] > FFC[0] && matriz[i][j] != maxes[max])
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+             {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                     FFC[0] = matriz[i][j];
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                     FFC[1] = i;
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                     FFC[2] = j;
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+             }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                    }
+\end_layout
+
+\begin_layout LyX-Code
+                                                    } //for de encontrar
+ centro
+\end_layout
+
+\begin_layout LyX-Code
+                                            if(FFC[0] < 4)
+\end_layout
+
+\begin_layout LyX-Code
+                                                {
+\end_layout
+
+\begin_layout LyX-Code
+                                                    return 0;
+\end_layout
+
+\begin_layout LyX-Code
+                                                }
+\end_layout
+
+\begin_layout LyX-Code
+                                                    if(FFC[1] == FFC[2])
+ //esta en el centro {valor, i, j}  
+\end_layout
+
+\begin_layout LyX-Code
+                                                          {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                    if(FFC[0]
+ > matriz[0][1] && ( (matriz[0][1] == matriz[2][1]) && (matriz[1][0] ==
+ matriz[1][2]) ) ) //central mayor a cruz lateral                      
+                                                       {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+             return 1;
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+     }
+\end_layout
+
+\begin_layout LyX-Code
+                                                            }
+\end_layout
+
+\begin_layout LyX-Code
+                                                    else //está en los lados
+\end_layout
+
+\begin_layout LyX-Code
+                                                            {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                if(FFC[1]
+ == 1 && FFC[2] == 0) //lado izquierdo en medio
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+ {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+         if((matriz[1][0] > matriz[0][0]) && (matriz[1][0] > matriz[1][1])
+ && (matriz[0][0] == matriz[2][0])) 
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                         return 1;                                     
+                                                    }                  
+                                                       }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                if(FFC[1]
+ == 1 && FFC[2] == 2) //lado derecho en medio
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+ { 
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+        if(matriz[1][2] > matriz[0][2] && (matriz[0][2] == matriz[2][2])
+ && (matriz[1][0] > matriz[1][1])) //evaluo lados                      
+                                                                   {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                         return 1;
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                 }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+ }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                if(FFC[1]
+ == 0 && FFC[2] == 1) //arriba en medio
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+ {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+         if(matriz[0][1] > matriz[0][2] && (matriz[0][2] == matriz[0][0])
+ && (matriz[0][1] > matriz[1][1]))
+\end_layout
+
+\begin_layout LyX-Code
+//evaluo lados                                                         
+                                {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                         return 1;
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                 }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+ }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                if(FFC[2]
+ == 1 && FFC[1] == 2) //lado derecho en medio
+\end_layout
+
+\begin_layout LyX-Code
+                                                                    {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+     if(matriz[2][1] > matriz[2][0] && (matriz[2][0] == matriz[2][2]) &&
+ (matriz[2][1] > matriz[1][1])) //
+\end_layout
+
+\begin_layout LyX-Code
+evaluo lados                                                           
+                          {
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+                     return 1;
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+             }
+\end_layout
+
+\begin_layout LyX-Code
+                                                                    }
+\end_layout
+
+\begin_layout LyX-Code
+                                                           }//else
+\end_layout
+
+\begin_layout LyX-Code
+                                                            max++; 
+\end_layout
+
+\begin_layout LyX-Code
+                                                           maxes[max] =
+ FFC[0];
+\end_layout
+
+\begin_layout LyX-Code
+                                    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+                                    return 0; 
+\end_layout
+
+\begin_layout LyX-Code
+                   }
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+              public int SL(int[][] m)
+\end_layout
+
+\begin_layout LyX-Code
+                    {
+\end_layout
+
+\begin_layout LyX-Code
+                        int vida = 3;
+\end_layout
+
+\begin_layout LyX-Code
+                            if(m[0][0] > vida) // esquinita de arriba izr
+ //cuadrado y lados                                     {              
+                               if((m[0][1] > vida && m[1][0] > vida && m[1][1]
+ > vida) || (m[0][1] > vida &&  m[0][2] > vida) || (m[1][0] > vida && m[1][2]
+ > vida))                                                     {        
+                                                     return 1;         
+                                            }                          
+           }                             if(m[0][2] > vida) // esquinita
+ de arriba dere                                     {                  
+                           if(m[0][1] > vida && m[1][2] > vida && m[1][1]
+ > vida)                                                     {         
+                                                    return 1;          
+                                           }                           
+          }                             if(m[2][0] > vida) // esquinita
+ de abajo izr                                     {                    
+                         if(m[1][0] > vida && m[2][1] > vida && m[1][1]
+ > vida)                                                     {         
+                                                    return 1;          
+                                           }                           
+          }                             if(m[2][2] > vida) // esquinita
+ de abajo der                                     {                    
+                         if((m[2][1] > vida && m[1][2] > vida && m[1][1]
+ > vida) ||  (m[2][0] > vida &&  m[2][1] > vida) || (m[1][2] > vida && m[0][2]
+ > vida))                                                     {        
+                                                     return 1;         
+                                            }                          
+           }                             return 0;                     }//still
+ life
+\end_layout
+
+\begin_layout LyX-Code
+              public int GL(int[][] m)                     {           
+              int tam = 2;                             if(m[0][0] >= tam)
+ // esquinita de arriba izr                                     {      
+                                       if(m[1][0] >= m[0][0] && m[0][1]
+ >= m[0][0] || (m[1][1] >= m[0][0] && (m[1][0] >= m[0][0] || m[0][1] >=
+ m[0][0])) )                                                     {     
+                                                        if(m[2][1] >= m[1][0]
+ && m[1][2] >= m[0][1] || m[2][2] >= m[1][1] && (m[2][1] >= m[1][0] || m[1][2]
+ >= m[0][1]))                                                          
+           {                                                           
+                  return 1;                                            
+                         }                                             
+        }                                     }                        
+     if(m[0][2] >= tam) // esquinita de arriba der                     
+                {                                             if(m[0][1]
+ >= m[0][2] && m[1][2] >= m[0][2] || (m[1][1] >= m[0][2] && (m[1][0] >=
+ m[0][2] || m[1][2] >= m[0][2])) )                                     
+                {                                                      
+       if(m[1][0] >= m[0][1] && m[2][1] >= m[1][2] || m[2][0] >= m[1][1]
+ && (m[2][1] >= m[1][0] || m[1][0] >= m[2][1]))                        
+                                             {                         
+                                                    return 1;          
+                                                           }           
+                                          }                            
+         }
+\end_layout
+
+\begin_layout LyX-Code
+                            if(m[2][0] >= tam) // esquinita de abajo izq
+                                             {                         
+                            if(m[1][0] >= m[2][0] && m[2][1] >= m[2][0]
+ || (m[1][1] >= m[2][0] && (m[1][0] >= m[2][0] || m[2][1] >= m[2][0])) )
+                                                             {         
+                                                            if(m[0][1] >=
+ m[1][0] && m[1][2] >= m[2][1] || m[0][2] >= m[1][1] && (m[0][1] >= m[1][0]
+ || m[1][2] >= m[2][1]))                                               
+                              {                                        
+                                             return 1;                 
+                                                            }          
+                                                   }                   
+                          }                             if(m[2][2] >= tam)
+ // esquinita de abajo der                                             {
+                                                     if(m[2][1] >= m[2][2]
+ && m[1][2] >= m[2][2] || (m[1][1] >= m[2][2] && (m[2][1] >= m[2][2] ||
+ m[1][2] >= m[2][2])) )                                                
+             {                                                         
+            if(m[1][0] >= m[2][1] && m[0][1] >= m[1][2] || m[0][0] >= m[1][1]
+ && (m[1][0] >= m[2][1] || m[0][1] >= m[1][2]))                        
+                                                     {                 
+                                                                    return
+ 1;                                                                    
+         }                                                             }
+                                             }                         
+    return 0;                     }//glider     }
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

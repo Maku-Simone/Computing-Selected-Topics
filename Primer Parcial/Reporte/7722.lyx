@@ -1,0 +1,607 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Juego de la Vida - Universos Complejos y Caóticos.
+\end_layout
+
+\begin_layout Author
+Frías Mercado Carlos Elliot
+\end_layout
+
+\begin_layout Standard
+\align center
+3CM6
+\end_layout
+
+\begin_layout Standard
+\align center
+Computing Selected Topics
+\end_layout
+
+\begin_layout Standard
+\align center
+Prof: Genaro Juárez Martínez
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Juego de la Vida con regla 7722 y 2233
+\end_layout
+
+\begin_layout Subsection
+Descripción del programa
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+Este programa permite simular el algoritmo conocido como Juego de la Vida
+ de Conway.
+ Contiene células las cuales se representan en el tablero a través de un
+ cuadrito de un color a elegir, estando algunas vivas y otras muertas.
+ El tamaño máximo del tablero (o cantidad máxima de células) es de 1000
+ y el mínimo es de 10.
+ El programa cuenta el número de células vivas por cada generación, de la
+ cuál s epuede definir la densidad de población de la inicial y las reporta,
+ además de que de dicho número de células saca un promedio o media y la
+ varianza.
+\end_layout
+
+\begin_layout Subsection
+Pruebas del funcionamiento
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 77-1.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 1: Inicialización del simulador con valores aleatorios y una densidad
+ del 5% en la regla 2233.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 77-2.png
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 2: Resultado de ejecución del primer análisis con 5% de poblaci´no
+ y regla 2233.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 77-4.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 3: Gráfica de densidades para la regla 2233.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 77-3.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Figura 4: Gráfica de densidades de ala regla 7722.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 77-5.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 5: Cálculo con la regla 7722 y densidad de población de 50%
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename 77-6.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Figura 6: Resultado de la varianza y media de cada regla y densidad.
+\end_layout
+
+\begin_layout Subsection
+Codigo fuente
+\end_layout
+
+\begin_layout Subsubsection
+Clase Varianza
+\end_layout
+
+\begin_layout LyX-Code
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  
+\end_layout
+
+\begin_layout LyX-Code
+* To change this template file, choose Tools | Templates  
+\end_layout
+
+\begin_layout LyX-Code
+* and open the template in the editor.
+  
+\end_layout
+
+\begin_layout LyX-Code
+*/ package logica;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  
+\end_layout
+
+\begin_layout LyX-Code
+* @author Maku  
+\end_layout
+
+\begin_layout LyX-Code
+*/ public class Varianza
+\end_layout
+
+\begin_layout LyX-Code
+ {
+\end_layout
+
+\begin_layout LyX-Code
+    int[] arrayVi;
+\end_layout
+
+\begin_layout LyX-Code
+    public Varianza(int[] arrayVi)
+\end_layout
+
+\begin_layout LyX-Code
+        {
+\end_layout
+
+\begin_layout LyX-Code
+            this.arrayVi = arrayVi;
+\end_layout
+
+\begin_layout LyX-Code
+        }
+\end_layout
+
+\begin_layout LyX-Code
+    public void calcula()
+\end_layout
+
+\begin_layout LyX-Code
+          {
+\end_layout
+
+\begin_layout LyX-Code
+            double acMedia = 0, acMedia2 = 0, varianza, x;
+\end_layout
+
+\begin_layout LyX-Code
+            int n = 0;
+\end_layout
+
+\begin_layout LyX-Code
+            for(int i = 0; i < arrayVi.length; i++)
+\end_layout
+
+\begin_layout LyX-Code
+                {                   
+\end_layout
+
+\begin_layout LyX-Code
+                  x = (double) arrayVi[i];
+\end_layout
+
+\begin_layout LyX-Code
+                  acMedia = acMedia + x; 
+\end_layout
+
+\begin_layout LyX-Code
+                  acMedia2 = acMedia2 + x * x;
+\end_layout
+
+\begin_layout LyX-Code
+                  n++;
+\end_layout
+
+\begin_layout LyX-Code
+                }
+\end_layout
+
+\begin_layout LyX-Code
+            varianza =  acMedia2 / (n - 1) - (acMedia * acMedia) / (n *
+ (n - 1));
+\end_layout
+
+\begin_layout LyX-Code
+            System.out.println("La varianza es: " + varianza);
+\end_layout
+
+\begin_layout LyX-Code
+            System.out.println("La media es: " + (acMedia / n));
+\end_layout
+
+\begin_layout LyX-Code
+                     }
+\end_layout
+
+\begin_layout LyX-Code
+}      
+\end_layout
+
+\begin_layout Subsubsection
+Clase Generaciones
+\end_layout
+
+\begin_layout LyX-Code
+ */ package logica;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  
+\end_layout
+
+\begin_layout LyX-Code
+*/ public class Generaciones
+\end_layout
+
+\begin_layout LyX-Code
+ {
+\end_layout
+
+\begin_layout LyX-Code
+    int[] todas;
+\end_layout
+
+\begin_layout LyX-Code
+    public Generaciones(int[] todas)
+\end_layout
+
+\begin_layout LyX-Code
+        {
+\end_layout
+
+\begin_layout LyX-Code
+            this.todas = todas;
+\end_layout
+
+\begin_layout LyX-Code
+        }
+\end_layout
+
+\begin_layout LyX-Code
+    public void informa()
+\end_layout
+
+\begin_layout LyX-Code
+        {
+\end_layout
+
+\begin_layout LyX-Code
+            for(int i = 0; i < todas.length; i++)
+\end_layout
+
+\begin_layout LyX-Code
+                {
+\end_layout
+
+\begin_layout LyX-Code
+                    System.out.println(todas[i]);
+\end_layout
+
+\begin_layout LyX-Code
+                }
+\end_layout
+
+\begin_layout LyX-Code
+        }
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout Subsubsection
+Clase Dios
+\end_layout
+
+\begin_layout LyX-Code
+package logica;
+\end_layout
+
+\begin_layout LyX-Code
+import java.util.Random;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */
+\end_layout
+
+\begin_layout LyX-Code
+public class Dios
+\end_layout
+
+\begin_layout LyX-Code
+     {
+\end_layout
+
+\begin_layout LyX-Code
+        public Dios(){}
+\end_layout
+
+\begin_layout LyX-Code
+        public int[][] creaVida(int tam, int densidad)
+\end_layout
+
+\begin_layout LyX-Code
+            {
+\end_layout
+
+\begin_layout LyX-Code
+               int[][] inicio = new int[tam + 2][tam + 2];
+\end_layout
+
+\begin_layout LyX-Code
+               Random r = new Random();
+\end_layout
+
+\begin_layout LyX-Code
+               for(int i = 1; i <= tam; i++)
+\end_layout
+
+\begin_layout LyX-Code
+                     {
+\end_layout
+
+\begin_layout LyX-Code
+                              for(int j = 1; j <= tam; j++)
+\end_layout
+
+\begin_layout LyX-Code
+                               {
+\end_layout
+
+\begin_layout LyX-Code
+                                   inicio[i][j] = r.nextInt(100);
+\end_layout
+
+\begin_layout LyX-Code
+                                    if(inicio[i][j] <=  densidad)
+\end_layout
+
+\begin_layout LyX-Code
+                                        {
+\end_layout
+
+\begin_layout LyX-Code
+                                            inicio[i][j] = 1;
+\end_layout
+
+\begin_layout LyX-Code
+                                        }
+\end_layout
+
+\begin_layout LyX-Code
+                                      else
+\end_layout
+
+\begin_layout LyX-Code
+                                      {
+\end_layout
+
+\begin_layout LyX-Code
+                                       inicio[i][j] = 0;
+\end_layout
+
+\begin_layout LyX-Code
+                                      }
+\end_layout
+
+\begin_layout LyX-Code
+                               } //for 2
+\end_layout
+
+\begin_layout LyX-Code
+                }                
+\end_layout
+
+\begin_layout LyX-Code
+return inicio;
+\end_layout
+
+\begin_layout LyX-Code
+            }
+\end_layout
+
+\begin_layout LyX-Code
+          public int[][] destruyeVida(int tam)
+\end_layout
+
+\begin_layout LyX-Code
+            { 
+\end_layout
+
+\begin_layout LyX-Code
+               int[][] fin = new int[tam + 2][tam + 2];
+\end_layout
+
+\begin_layout LyX-Code
+               for(int i = 1; i <= tam; i++)
+\end_layout
+
+\begin_layout LyX-Code
+               {
+\end_layout
+
+\begin_layout LyX-Code
+                   for(int j = 1; j <= tam; j++)
+\end_layout
+
+\begin_layout LyX-Code
+                    {
+\end_layout
+
+\begin_layout LyX-Code
+                        fin[i][j] = 0;
+\end_layout
+
+\begin_layout LyX-Code
+                    }
+\end_layout
+
+\begin_layout LyX-Code
+               }
+\end_layout
+
+\begin_layout LyX-Code
+               return fin;
+\end_layout
+
+\begin_layout LyX-Code
+            }
+\end_layout
+
+\begin_layout LyX-Code
+   } 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

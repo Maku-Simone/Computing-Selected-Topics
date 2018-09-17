@@ -1,0 +1,239 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Resumen - Macy Conference
+\end_layout
+
+\begin_layout Author
+Frías Mercado Carlos Elliot - 3CM6 - Sistemas Complejos
+\end_layout
+
+\begin_layout Date
+30 de agosto de 2017
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Conferencia Macy
+\end_layout
+
+\begin_layout Standard
+Las Conferencias Macy fueron un conjunto de reuniones de académicos de diversas
+ disciplinas celebradas en Nueva York bajo la dirección de Frank Fremont-Smith
+ en la Fundación Josiah Macy, Jr., comenzando en 1941 y terminando en 1960.
+\end_layout
+
+\begin_layout Standard
+La Fundación Josiah Macy, Jr.
+ desarrolló dos innovaciones específicamente diseñadas para fomentar y facilitar
+ intercambios interdisciplinarios y multidisciplinarios; 
+\end_layout
+
+\begin_layout Standard
+Uno era oral: las conferencias Macy, y una fue escrita: las transacciones
+ Macy (transcripciones publicadas de las conferencias).
+ 
+\end_layout
+
+\begin_layout Standard
+Las conferencias de Macy eran esencialmente conversaciones sostenidas en
+ un set de conferencias, con los participantes que presentaban investigaciones
+ mientras éstas todavía estaban en proceso.
+ Las transacciones Macy eran más formales que las conversaciones (los documentos
+ se preparaban con anticipación y luego eran distribuidoss.
+ Las transacciones Macy eran ampliamente distribuidas a aquellos que no
+ podían asistir.
+ Estos fueron mucho más informales que los procedimientos típicos, que publican
+ versiones revisadas de los documentos de la conferencia, y sirvieron para
+ invitar a expertos adicionales en el intercambio
+\end_layout
+
+\begin_layout Standard
+El objetivo principal de estas reuniones era sentar las bases de una ciencia
+ general sobre el funcionamiento de la mente humana.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Leeds-Hurwitz, Wendy (1994).
+ "Crossing disciplinary boundaries: The Macy Foundation Conferences on Cyberneti
+cs as a case study in multidisciplinary communication".
+ Cybernetica: Journal of the International Association for Cybernetics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La primera conferencia, titulada "Mecanismos de Retroalimentación y Sistemas
+ Causales Circulares en Sistemas Biológicos y Sociales" contó con la presencia
+ de una red sin precedentes de grandes mentes en ese momento:
+\end_layout
+
+\begin_layout Itemize
+William Ross Ashby; Psiquiatra y pionero en cibernética 
+\end_layout
+
+\begin_layout Itemize
+Gregory Bateson; Antropólogo, sociólogo, lingüista, antropólogo visual,
+ semiótico y cibernético 
+\end_layout
+
+\begin_layout Itemize
+Julian Bigelow; Ingeniero informático pionero 
+\end_layout
+
+\begin_layout Itemize
+Heinz von Foerster; Biophysicist, científico que combina la física y la
+ filosofía y el arquitecto de la cibernética
+\end_layout
+
+\begin_layout Itemize
+Lawrence K.
+ Frank; Científico social
+\end_layout
+
+\begin_layout Itemize
+Ralph W.
+ Gerard; Neurofisiólogo y científico del comportamiento conocido por su
+ trabajo sobre el sistema nervioso, el metabolismo nervioso, la psicofarmacologí
+a y las bases biológicas de la esquizofrenia
+\end_layout
+
+\begin_layout Itemize
+Molly Harrower; Psicólogo clínico pionero 
+\end_layout
+
+\begin_layout Itemize
+Lawrence Kubie; Psiquiatra 
+\end_layout
+
+\begin_layout Itemize
+Paul Lazarsfeld; Sociólogo y fundador de la Oficina de Investigación Social
+ Aplicada de la Universidad de Columbia 
+\end_layout
+
+\begin_layout Itemize
+Kurt Lewin; Psicólogo, a menudo considerado como el fundador de la psicología
+ social 
+\end_layout
+
+\begin_layout Itemize
+Warren McCulloch (presidente); Psicólogo, neurofisiólogo y cibernético
+\end_layout
+
+\begin_layout Itemize
+Margaret Mead; Antropólogo cultural 
+\end_layout
+
+\begin_layout Itemize
+John von Neumann; Uno de los matemáticos más destacados del siglo XX 
+\end_layout
+
+\begin_layout Itemize
+Walter Pitts; Lógico y coautor del artículo que fundó redes neuronales 
+\end_layout
+
+\begin_layout Itemize
+Arturo Rosenblueth; Investigador, médico, fisiólogo y pionero de la cibernética
+\end_layout
+
+\begin_layout Itemize
+Leonard J.
+ Savage; Matemático y estadístico 
+\end_layout
+
+\begin_layout Itemize
+Norbert Wiener; Matemático y fundador de la cibernética 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+http://emcsr.net/looking-back-in-history-the-macy-conferences/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

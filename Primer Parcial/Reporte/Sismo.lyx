@@ -1,0 +1,154 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Resumen - ¿Se pueden predecir los sismos?
+\end_layout
+
+\begin_layout Author
+Frías Mercado Carlos Elliot - 3CM6 - Sistemas Complejos
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+¿Se pueden predecir los sismos?
+\end_layout
+
+\begin_layout Standard
+La orogarfía es la parte de la geografía física que se encarga del estudio,
+ descripción y representación del relieve terrestre, gracias a la cuál se
+ puede tener un mapa preciso de las placas tectóncias que existen en el
+ planeta, apoyado principalmente por el mapeo de los pequeños sismos que
+ son detectados, ya que éstos se producen donde las placas chocan o se encuentra
+n una con otra, la concentración de pequeños sismos permite delimiatr el
+ área de cada una de las placas terrestres.
+\end_layout
+
+\begin_layout Standard
+En éstas fronteras es donde se produce la subducción, que es donde una o
+ varias placas terminan pasando una debajo de la otra, acción que de igual
+ manera produce sismos de mayor o menos intensidad.
+\end_layout
+
+\begin_layout Standard
+Un terremoto puede ser causado por una erupción volcánica, un derrumbe de
+ una caverna subterránea, etc, como es el caso de México, en cuya costa
+ suroeste la placa de Cocos se subduce bajo la placa norteamericana, y por
+ muchas otras causas.
+ La acumulación de tensión se libera de manera impredecible.
+\end_layout
+
+\begin_layout Standard
+La producción de los sismos también se debe a la acumulación de energía
+ entre placas, lo que desencadena movimientos telúricos de muy alta intensidad
+ tras la liberación de dicha energía, la cual, tras cierto tiempo vovlerá
+ a irse acumulando hasta liberarse.
+ Esto se puede expresar como un ciclo, donde cada cambio sería un estado
+ los cuales con el paso del tiempo irían cambiando hasta llegar de nuevo
+ a un quilibrio, similar a un autómata celular el cual contiene n estados
+ transitivos diferentes, llegando a un estado o conjunto de estados finales
+ y cíclicos, similar a lo que es unm atractor.
+\end_layout
+
+\begin_layout Standard
+Éstos estados naturales se mantienen estables hasta que un factor externo
+ los altera, llegando a pasar por muchas etapas , que en este caso serían
+ las réplicas hasta que de nuevo se vuelve a un equilibrio, El Dr.
+ Fernando lo asemejaba como al tene run montón de arena acomodado como pírámide,
+ cualquier pequeño grano que llegue perturbará de menor o mayor medida el
+ espacio, éste pasará por múltiples etapas de caos ahsta que vovlerá a su
+ estado inicial de calma, volviendo a su atractor.
+\end_layout
+
+\begin_layout Standard
+México está enclavado en una región tectónicamente muy activa, con cinco
+ placas que interactúan entre sí, y una de éstas, la de Cocos, es de las
+ que producen la mayor cantidad de sismos.
+ 
+\end_layout
+
+\begin_layout Standard
+En promedio, en México ocurren 5 sismos de magnitud mayor o igual a 6.5 cada
+ 4 años.
+ Sismos de menor magnitud ocurren con mayor frecuencia, por ejemplo cada
+ año se registran más de 100 con magnitudes mayores o iguales a 4.5, mientras
+ que se espera un sismo con magnitud mayor o igual a 7.5 cada 10 años
+\end_layout
+
+\end_body
+\end_document

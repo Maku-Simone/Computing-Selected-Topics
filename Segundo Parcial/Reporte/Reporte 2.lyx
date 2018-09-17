@@ -1,0 +1,4155 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Autómata Celular - Reglas y Generador de Atractores
+\end_layout
+
+\begin_layout Author
+Frías Mercado Carlos Elliot
+\end_layout
+
+\begin_layout Standard
+\align center
+3CM6
+\end_layout
+
+\begin_layout Standard
+\align center
+Computing Selected Topics
+\end_layout
+
+\begin_layout Standard
+\align center
+Prof: Genaro Juárez Martínez
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+AC - Reglas
+\end_layout
+
+\begin_layout Subsection
+Descripción del programa
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing onehalf
+Este programa permite simular las 256 reglas de producción de los autómatas
+ celulares, permitiendo a su vez guardar o cargar archivos, cambiar colores,
+ la velocidad y tamaño del anillo a evaluar por generación por cada iteración.
+\end_layout
+
+\begin_layout Subsection
+Pruebas del funcionamiento
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename R1.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 1: Inicialización del simulador con valores aleatorios
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename R2.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 2: Cambio de colores del programa y patrón introducido por el usuario
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename R3.png
+	scale 20
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 3: Aspecto del Archivo Guardado
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename R4.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Figura 4: Archivo Cargado
+\end_layout
+
+\begin_layout Subsection
+Codigo fuente
+\end_layout
+
+\begin_layout Subsubsection
+Clase Universo
+\end_layout
+
+\begin_layout LyX-Code
+/*  * To change this license header, choose License Headers in Project Propertie
+s.
+  
+\end_layout
+
+\begin_layout LyX-Code
+* To change this template file, choose Tools | Templates  
+\end_layout
+
+\begin_layout LyX-Code
+* and open the template in the editor.
+  */ 
+\end_layout
+
+\begin_layout LyX-Code
+package gol;
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Color; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Dimension; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Graphics; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Graphics2D; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.Point; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseEvent; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseListener; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseWheelEvent; 
+\end_layout
+
+\begin_layout LyX-Code
+import java.awt.event.MouseWheelListener; 
+\end_layout
+
+\begin_layout LyX-Code
+import javax.swing.JPanel; 
+\end_layout
+
+\begin_layout LyX-Code
+import logica.Dios;
+\end_layout
+
+\begin_layout LyX-Code
+import logica.Vida;
+\end_layout
+
+\begin_layout LyX-Code
+/**  *  * @author Maku  */ 
+\end_layout
+
+\begin_layout LyX-Code
+class Universo extends JPanel  {       
+\end_layout
+
+\begin_layout LyX-Code
+ int[][] m;     
+\end_layout
+
+\begin_layout LyX-Code
+   int tam, click, tamCelula = 10, tiempo; //tam = num de celulas     
+\end_layout
+
+\begin_layout LyX-Code
+   private Graphics2D g2d;       
+\end_layout
+
+\begin_layout LyX-Code
+ Color viva,  muerta;         
+\end_layout
+
+\begin_layout LyX-Code
+int[] regla = new int[4];         
+\end_layout
+
+\begin_layout LyX-Code
+Dios gg = new Dios();         
+\end_layout
+
+\begin_layout LyX-Code
+private int zoom = 0;        
+\end_layout
+
+\begin_layout LyX-Code
+private static final double ZOOM_AMOUNT = 1.1;    
+\end_layout
+
+\begin_layout LyX-Code
+    Universo ()             {                              }        
+\end_layout
+
+\begin_layout LyX-Code
+Universo(int[] regla, int tam, int tiempo, Color vi, Color mu)         
+\end_layout
+
+\begin_layout LyX-Code
+{                               
+\end_layout
+
+\begin_layout LyX-Code
+  this.regla = regla;       
+\end_layout
+
+\begin_layout LyX-Code
+     this.tam = tam;     
+\end_layout
+
+\begin_layout LyX-Code
+          setPreferredSize(new Dimension(tam*tamCelula,tam*tamCelula));
+ //x, y   
+\end_layout
+
+\begin_layout LyX-Code
+          m = gg.creaVida(tam);       
+\end_layout
+
+\begin_layout LyX-Code
+     this.tiempo = tiempo;           
+\end_layout
+
+\begin_layout LyX-Code
+ viva = vi;          
+\end_layout
+
+\begin_layout LyX-Code
+  muerta = mu;          
+\end_layout
+
+\begin_layout LyX-Code
+  this .addMouseListener(new MouseListener() 
+\end_layout
+
+\begin_layout LyX-Code
+{                                                      
+\end_layout
+
+\begin_layout LyX-Code
+  @Override                                 
+\end_layout
+
+\begin_layout LyX-Code
+                       public void mouseClicked(MouseEvent e)          
+                              
+\end_layout
+
+\begin_layout LyX-Code
+                         {                                             
+\end_layout
+
+\begin_layout LyX-Code
+                       int x, y;                                       
+                             
+\end_layout
+
+\begin_layout LyX-Code
+Point p = e.getPoint();                                          
+\end_layout
+
+\begin_layout LyX-Code
+y = (int) Math.floor((float)p.getX()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+x = (int) Math.floor((float)p.getY()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+if(x < tam && y < tam)                                                 
+                        
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+if(m[x][y] == 1)                                                       
+                          
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 0;                                                           
+                      
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+else                                                                   
+              
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 1;             
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+                                                                       
+          
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;                                                             
+                
+\end_layout
+
+\begin_layout LyX-Code
+repaint();                                                             
+           
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                 
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mousePressed(MouseEvent e) {                               
+                              
+\end_layout
+
+\begin_layout LyX-Code
+//throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseReleased(MouseEvent e) {                              
+                              
+\end_layout
+
+\begin_layout LyX-Code
+// throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseEntered(MouseEvent e) {                               
+                            
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                         
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseExited(MouseEvent e) {                                
+                           
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                         
+\end_layout
+
+\begin_layout LyX-Code
+}                                                     });              
+                 }
+\end_layout
+
+\begin_layout LyX-Code
+        
+\end_layout
+
+\begin_layout LyX-Code
+Universo(int[] regla, int tam, int tiempo, int cero, Color vi, Color mu)
+        
+\end_layout
+
+\begin_layout LyX-Code
+{                                  
+\end_layout
+
+\begin_layout LyX-Code
+this.regla = regla;            
+\end_layout
+
+\begin_layout LyX-Code
+this.tam = tam;                
+\end_layout
+
+\begin_layout LyX-Code
+setPreferredSize(new Dimension(tam*tamCelula,tam*tamCelula)); //x, y   
+          
+\end_layout
+
+\begin_layout LyX-Code
+m = gg.destruyeVida(tam);            
+\end_layout
+
+\begin_layout LyX-Code
+this.tiempo = tiempo;            
+\end_layout
+
+\begin_layout LyX-Code
+viva = vi;             
+\end_layout
+
+\begin_layout LyX-Code
+muerta = mu;             
+\end_layout
+
+\begin_layout LyX-Code
+this .addMouseListener(new MouseListener() {                            
+                             
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseClicked(MouseEvent e)                                 
+                                 
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                     
+\end_layout
+
+\begin_layout LyX-Code
+int x, y;                                                              
+       
+\end_layout
+
+\begin_layout LyX-Code
+Point p = e.getPoint();                                                 
+                    
+\end_layout
+
+\begin_layout LyX-Code
+y = (int) Math.floor((float)p.getX()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+x = (int) Math.floor((float)p.getY()/tamCelula);                         
+                                          
+\end_layout
+
+\begin_layout LyX-Code
+ if(x < tam && y < tam)                                                
+                         
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+      
+\end_layout
+
+\begin_layout LyX-Code
+if(m[x][y] == 1)                                                       
+                         
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+              
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 0;                                                           
+                      
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+else                                                                   
+              
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 1;                                                           
+                     
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+                                                                       
+         
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;                                                             
+                
+\end_layout
+
+\begin_layout LyX-Code
+repaint();                                                             
+           
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                       
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mousePressed(MouseEvent e) {                               
+                              
+\end_layout
+
+\begin_layout LyX-Code
+//throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseReleased(MouseEvent e) {                              
+                              
+\end_layout
+
+\begin_layout LyX-Code
+// throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseEntered(MouseEvent e) {                               
+                            
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseExited(MouseEvent e) {                                
+                           //  
+\end_layout
+
+\begin_layout LyX-Code
+throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }             
+                                        });                      
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                
+\end_layout
+
+\begin_layout LyX-Code
+Universo(int[] regla, int tam, int tiempo, int[][] car, Color vi, Color
+ mu)         
+\end_layout
+
+\begin_layout LyX-Code
+{                                  
+\end_layout
+
+\begin_layout LyX-Code
+this.regla = regla;             
+\end_layout
+
+\begin_layout LyX-Code
+this.tam = tam-2;
+\end_layout
+
+\begin_layout LyX-Code
+               
+\end_layout
+
+\begin_layout LyX-Code
+System.out.println(this.tam);            
+\end_layout
+
+\begin_layout LyX-Code
+setPreferredSize(new Dimension(tam*tamCelula,tam*tamCelula)); //x, y   
+           
+\end_layout
+
+\begin_layout LyX-Code
+m = car;             
+\end_layout
+
+\begin_layout LyX-Code
+this.tiempo = tiempo;             
+\end_layout
+
+\begin_layout LyX-Code
+viva = vi;             
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;             
+\end_layout
+
+\begin_layout LyX-Code
+muerta = mu;             
+\end_layout
+
+\begin_layout LyX-Code
+this .addMouseListener(new MouseListener() {                            
+                             
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseClicked(MouseEvent e)                                 
+                                
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                    
+\end_layout
+
+\begin_layout LyX-Code
+int x, y;                                                              
+       
+\end_layout
+
+\begin_layout LyX-Code
+Point p = e.getPoint();                                                 
+                    
+\end_layout
+
+\begin_layout LyX-Code
+y = (int) Math.floor((float)p.getX()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+x = (int) Math.floor((float)p.getY()/tamCelula);                         
+                                            
+\end_layout
+
+\begin_layout LyX-Code
+if(x < tam && y < tam)                                                 
+                        
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+       
+\end_layout
+
+\begin_layout LyX-Code
+if(m[x][y] == 1)                                                       
+                          
+\end_layout
+
+\begin_layout LyX-Code
+{                                                                      
+               
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 0;                                                           
+                      
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+      
+\end_layout
+
+\begin_layout LyX-Code
+else                                                                   
+              
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+                                                                       
+             
+\end_layout
+
+\begin_layout LyX-Code
+m[x][y] = 1;                                                           
+                     
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                      
+                                                                       
+          
+\end_layout
+
+\begin_layout LyX-Code
+click = 1;                                                             
+               
+\end_layout
+
+\begin_layout LyX-Code
+repaint();                                                             
+            
+\end_layout
+
+\begin_layout LyX-Code
+}                                                                 
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mousePressed(MouseEvent e) {                               
+                              
+\end_layout
+
+\begin_layout LyX-Code
+//throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseReleased(MouseEvent e) {                              
+                              
+\end_layout
+
+\begin_layout LyX-Code
+// throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseEntered(MouseEvent e) {                               
+                            
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); //To change
+ body of generated methods, choose Tools | Templates.
+                                                         }
+\end_layout
+
+\begin_layout LyX-Code
+                                                        
+\end_layout
+
+\begin_layout LyX-Code
+@Override                                                         
+\end_layout
+
+\begin_layout LyX-Code
+public void mouseExited(MouseEvent e) {                                
+                           
+\end_layout
+
+\begin_layout LyX-Code
+//  throw new UnsupportedOperationException("Not supported yet."); 
+\end_layout
+
+\begin_layout LyX-Code
+//To change body of generated methods, choose Tools | Templates.
+                                                         
+\end_layout
+
+\begin_layout LyX-Code
+                                                    
+\end_layout
+
+\begin_layout LyX-Code
+});                               
+\end_layout
+
+\begin_layout LyX-Code
+}                
+\end_layout
+
+\begin_layout LyX-Code
+@Override         
+\end_layout
+
+\begin_layout LyX-Code
+public void paintComponent(Graphics g)          
+\end_layout
+
+\begin_layout LyX-Code
+{             super.paintComponent(g);                     
+\end_layout
+
+\begin_layout LyX-Code
+if(click == 1)                             
+\end_layout
+
+\begin_layout LyX-Code
+{                     
+\end_layout
+
+\begin_layout LyX-Code
+click = 0;                    
+\end_layout
+
+\begin_layout LyX-Code
+// repaint();                 
+\end_layout
+
+\begin_layout LyX-Code
+}             
+\end_layout
+
+\begin_layout LyX-Code
+else          
+\end_layout
+
+\begin_layout LyX-Code
+      {                     
+\end_layout
+
+\begin_layout LyX-Code
+m = analiza(m, regla);                 
+\end_layout
+
+\begin_layout LyX-Code
+}             
+\end_layout
+
+\begin_layout LyX-Code
+g2d = (Graphics2D) g;	             
+\end_layout
+
+\begin_layout LyX-Code
+for(int i = 1; i <= tam; i++)                 
+\end_layout
+
+\begin_layout LyX-Code
+{                     
+\end_layout
+
+\begin_layout LyX-Code
+for(int j = 1; j <= tam; j++) 
+\end_layout
+
+\begin_layout LyX-Code
+if(m[i][j] == 1)                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                       
+\end_layout
+
+\begin_layout LyX-Code
+g2d.setColor(viva); 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.fillRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.drawRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy //x, y                                                           
+     
+\end_layout
+
+\begin_layout LyX-Code
+}                             else                             
+\end_layout
+
+\begin_layout LyX-Code
+{                                     
+\end_layout
+
+\begin_layout LyX-Code
+g2d.setColor(muerta); 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.fillRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy 	
+\end_layout
+
+\begin_layout LyX-Code
+	g2d.drawRect(tamCelula*j, tamCelula*i, tamCelula, tamCelula); //x, y, tamx,
+ tamy //x, y                             
+\end_layout
+
+\begin_layout LyX-Code
+}                         
+\end_layout
+
+\begin_layout LyX-Code
+}                 
+\end_layout
+
+\begin_layout LyX-Code
+}                        // repaint();             
+\end_layout
+
+\begin_layout LyX-Code
+try              
+\end_layout
+
+\begin_layout LyX-Code
+{                                                          
+\end_layout
+
+\begin_layout LyX-Code
+//System.out.println("tiempo " +tiempo);                 
+\end_layout
+
+\begin_layout LyX-Code
+Thread.sleep(tiempo);	           
+\end_layout
+
+\begin_layout LyX-Code
+ }          
+\end_layout
+
+\begin_layout LyX-Code
+catch (Exception e) {}   
+\end_layout
+
+\begin_layout LyX-Code
+     } //paint component            
+\end_layout
+
+\begin_layout LyX-Code
+public int[][] analiza(int[][]m, int[] regla)       
+\end_layout
+
+\begin_layout LyX-Code
+        {                     
+\end_layout
+
+\begin_layout LyX-Code
+Vida v = new Vida();                     
+\end_layout
+
+\begin_layout LyX-Code
+//System.out.println("hay"+regla[0]);                     
+\end_layout
+
+\begin_layout LyX-Code
+return v.existe(m,regla, tam);                
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+ public int[][] getMatriz()     
+\end_layout
+
+\begin_layout LyX-Code
+{         
+\end_layout
+
+\begin_layout LyX-Code
+return m;     
+\end_layout
+
+\begin_layout LyX-Code
+}          
+\end_layout
+
+\begin_layout LyX-Code
+}//class     
+\end_layout
+
+\begin_layout Subsubsection
+Clase FrameTodo
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+private void BtnStepActionPerformed(java.awt.event.ActionEvent evt)
+\end_layout
+
+\begin_layout Plain Layout
+
+{//GEN-FIRST:event_BtnStepActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+// TODO add your handling code here:
+\end_layout
+
+\begin_layout Plain Layout
+
+if(autoriza() == 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+if(gens == 0 && arshivo == 0)
+\end_layout
+
+\begin_layout Plain Layout
+
+     {
+\end_layout
+
+\begin_layout Plain Layout
+
+        ScrollM.revalidate();
+\end_layout
+
+\begin_layout Plain Layout
+
+        tam = Integer.parseInt(txtTamUniv.getText()) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+		un=newUniverso(regla,tam,getTiempo(), cViva, cMuerta);
+\end_layout
+
+\begin_layout Plain Layout
+
+		ScrollM.getViewport().add(un);                                   
+\end_layout
+
+\begin_layout Plain Layout
+
+		ScrollM.setVisible(true);                                             
+                                    
+\end_layout
+
+\begin_layout Plain Layout
+
+		repaint();                             
+\end_layout
+
+\begin_layout Plain Layout
+
+		gens++;
+\end_layout
+
+\begin_layout Plain Layout
+
+     }
+\end_layout
+
+\begin_layout Plain Layout
+
+    else
+\end_layout
+
+\begin_layout Plain Layout
+
+     {
+\end_layout
+
+\begin_layout Plain Layout
+
+        arshivo = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+         repaint();
+\end_layout
+
+\begin_layout Plain Layout
+
+         gens++;
+\end_layout
+
+\begin_layout Plain Layout
+
+	  }
+\end_layout
+
+\begin_layout Plain Layout
+
+ un.setTiempo(tiempo);
+\end_layout
+
+\begin_layout Plain Layout
+
+ un.setZoom(zoom);
+\end_layout
+
+\begin_layout Plain Layout
+
+ lbGens.setText(gens + " generaciones");
+\end_layout
+
+\begin_layout Plain Layout
+
+ BtnPausar.setText("Reanudar");
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+//GEN-LAST:event_BtnStepActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+private void BtnReiniciarActionPerformed(java.awt.event.ActionEvent evt)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+//GEN-FIRST:event_BtnReiniciarActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+// TODO add your handling code here:
+\end_layout
+
+\begin_layout Plain Layout
+
+//ScrollM.removeAll();
+\end_layout
+
+\begin_layout Plain Layout
+
+if(autoriza() == 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+ ScrollM.revalidate();
+\end_layout
+
+\begin_layout Plain Layout
+
+//   ScrollM.repaint();
+\end_layout
+
+\begin_layout Plain Layout
+
+gens = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+lbGens.setText("0 generaciones");
+\end_layout
+
+\begin_layout Plain Layout
+
+tam = Integer.parseInt(txtTamUniv.getText()) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+un = new Universo(regla, tam,getTiempo(), cViva, cMuerta);
+\end_layout
+
+\begin_layout Plain Layout
+
+ScrollM.getViewport().add(un); 
+\end_layout
+
+\begin_layout Plain Layout
+
+    ScrollM.setVisible(true);
+\end_layout
+
+\begin_layout Plain Layout
+
+BtnPausar.setText("Pausar");
+\end_layout
+
+\begin_layout Plain Layout
+
+ timer.stop(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+     repaint();
+\end_layout
+
+\begin_layout Plain Layout
+
+un.setTiempo(tiempo); 
+\end_layout
+
+\begin_layout Plain Layout
+
+un.setZoom(zoom);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}//GEN-LAST:event_BtnReiniciarActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+private void VelocidadSliderStateChanged(javax.swing.event.ChangeEvent evt)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+//GEN-FIRST:event_VelocidadSliderStateChanged
+\end_layout
+
+\begin_layout Plain Layout
+
+// TODO add your handling code here:
+\end_layout
+
+\begin_layout Plain Layout
+
+jLabelTiempo.setText(Float.toString((float) (1.0 / VelocidadSlider.getValue()))
+ + " segundos");
+\end_layout
+
+\begin_layout Plain Layout
+
+tiempo = 1000/VelocidadSlider.getValue();
+\end_layout
+
+\begin_layout Plain Layout
+
+setTiempo(tiempo);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+//GEN-LAST:event_VelocidadSliderStateChanged
+\end_layout
+
+\begin_layout Plain Layout
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)
+\end_layout
+
+\begin_layout Plain Layout
+
+{//GEN-FIRST:event_jButton1ActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+//INICIAR
+\end_layout
+
+\begin_layout Plain Layout
+
+jButton1.setText("Iniciar");
+\end_layout
+
+\begin_layout Plain Layout
+
+if(autoriza() == 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+ {
+\end_layout
+
+\begin_layout Plain Layout
+
+            if(timer.isRunning())
+\end_layout
+
+\begin_layout Plain Layout
+
+                     {
+\end_layout
+
+\begin_layout Plain Layout
+
+                         System.out.println(":3");
+\end_layout
+
+\begin_layout Plain Layout
+
+                     }
+\end_layout
+
+\begin_layout Plain Layout
+
+		    else 
+\end_layout
+
+\begin_layout Plain Layout
+
+                {
+\end_layout
+
+\begin_layout Plain Layout
+
+//                                                     ScrollM.removeAll();
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ScrollM.revalidate();
+\end_layout
+
+\begin_layout Plain Layout
+
+                    gens = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+                    lbGens.setText("0 generaciones");
+\end_layout
+
+\begin_layout Plain Layout
+
+                    tam = Integer.parseInt(txtTamUniv.getText()) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+        un = new Universo(regla, tam,getTiempo(), cViva, cMuerta);
+\end_layout
+
+\begin_layout Plain Layout
+
+                                                                       
+                                                  
+\end_layout
+
+\begin_layout Plain Layout
+
+					ScrollM.getViewport().add(un);
+\end_layout
+
+\begin_layout Plain Layout
+
+                    ScrollM.setVisible(true);
+\end_layout
+
+\begin_layout Plain Layout
+
+                    timer.start();
+\end_layout
+
+\begin_layout Plain Layout
+
+                    repaint();
+\end_layout
+
+\begin_layout Plain Layout
+
+                 }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+//autoriza     
+\end_layout
+
+\begin_layout Plain Layout
+
+}//GEN-LAST:event_jButton1ActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+    private void BtnPausarActionPerformed(java.awt.event.ActionEvent evt)
+\end_layout
+
+\begin_layout Plain Layout
+
+{//GEN-FIRST:event_BtnPausarActionPerformed
+\end_layout
+
+\begin_layout Plain Layout
+
+// TODO add your handling code here:
+\end_layout
+
+\begin_layout Plain Layout
+
+if(timer.isRunning()) 
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    timer.stop(); 
+\end_layout
+
+\begin_layout Plain Layout
+
+   BtnPausar.setText("Reanudar");
+\end_layout
+
+\begin_layout Plain Layout
+
+} 
+\end_layout
+
+\begin_layout Plain Layout
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+   if(BtnPausar.getText().equals("Reanudar"))
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+            timer.restart();
+\end_layout
+
+\begin_layout Plain Layout
+
+            BtnPausar.setText("Pausar");
+\end_layout
+
+\begin_layout Plain Layout
+
+        }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Generador de Atractores
+\end_layout
+
+\begin_layout Subsection
+Descripción del programa
+\end_layout
+
+\begin_layout Standard
+\align block
+Este programa se encarga de generar el código del programa Mathematica para
+ poder garficar el atractor generado por la regla dada del autómata celular.
+\end_layout
+
+\begin_layout Subsection
+Pruebas del funcionamiento
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A1.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 5: Inicio del simulador y analizador aleatoriamente.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A2.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 6: Ejecución del analizador
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A3.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 7: Análisis Terminado
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A4.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 8: Archivo generado.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename A5.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Newline linebreak
+\end_inset
+
+Figura 9: Graficación del atractor
+\end_layout
+
+\begin_layout Subsection
+Codigo fuente
+\end_layout
+
+\begin_layout Subsubsection
+Clase Vida
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset listings
+lstparams "language=Java,breaklines=true,extendedchars=true"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Public int[] binario(int r, int tam)  //entero a binario
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+int[] b = new int[tam];
+\end_layout
+
+\begin_layout Plain Layout
+
+String bin = Integer.toBinaryString(r);
+\end_layout
+
+\begin_layout Plain Layout
+
+while(bin.length() < tam)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        bin = "0" + bin;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+//  System.out.println("s" + bin);
+\end_layout
+
+\begin_layout Plain Layout
+
+for(int i = 0; i < tam; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        b[i] = Character.getNumericValue(bin.charAt(i));
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+return b;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+public int[] existe (int[] m, int regla, int tam) //analizador del automata
+ y sustituidor
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    int[] aux = new int[tam], sust = new int[8]; //aqui va el sustituidor
+\end_layout
+
+\begin_layout Plain Layout
+
+    String cadenita;
+\end_layout
+
+\begin_layout Plain Layout
+
+    int[] bin = binario(regla, 8);
+\end_layout
+
+\begin_layout Plain Layout
+
+    for(int i = 0; i < tam; i++) //aqui divido el arreglo en pedacitos de
+ 3 para analizarlo
+\end_layout
+
+\begin_layout Plain Layout
+
+        {
+\end_layout
+
+\begin_layout Plain Layout
+
+if(i == 0) //uno el inicio con el final
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+cadenita = Integer.toString(m[tam - 1]);
+\end_layout
+
+\begin_layout Plain Layout
+
+cadenita += Integer.toString(m[i]) + Integer.toString(m[i + 1]);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+if(i == (tam - 1))
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+cadenita = m[i - 1] + "" + m[i] + "" + m[0] + ""; //uno el final al inicio
+                                             
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+cadenita = m[i - 1] + "" +m[i] + "" +m[i + 1] + "";
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+        //    System.out.println(cadenita);
+\end_layout
+
+\begin_layout Plain Layout
+
+switch(cadenita)
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "000":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[7];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "001":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[6];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "010":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[5];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "011":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[4];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "100":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[3];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "101":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[2];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "110":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+        case "111":
+\end_layout
+
+\begin_layout Plain Layout
+
+            aux[i] = bin[0];
+\end_layout
+
+\begin_layout Plain Layout
+
+        break;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}	
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+    return aux;
+\end_layout
+
+\begin_layout Plain Layout
+
+}//main
+\end_layout
+
+\begin_layout Plain Layout
+
+public int decimal(int[] m)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+String bin = "";
+\end_layout
+
+\begin_layout Plain Layout
+
+int dec; 
+\end_layout
+
+\begin_layout Plain Layout
+
+for(int i = 0; i < m.length; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+    bin += Integer.toString(m[i]);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+dec = Integer.parseInt(bin, 2);
+\end_layout
+
+\begin_layout Plain Layout
+
+ //convierto binario a decimal
+\end_layout
+
+\begin_layout Plain Layout
+
+return dec;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Clase FrameTodo
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+if (src == timer)
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+Prog.setValue(nodoActual);
+\end_layout
+
+\begin_layout Plain Layout
+
+if(nodoActual == (int)Math.pow(2,tam)) //ya terminé
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        timer.stop();
+\end_layout
+
+\begin_layout Plain Layout
+
+        esc.escribe(regla, "}];");
+\end_layout
+
+\begin_layout Plain Layout
+
+        JOptionPane.showMessageDialog(null, "Análisis Terminado.
+ Se ha creado un sensual archivo");
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+else
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\end_layout
+
+\begin_layout Plain Layout
+
+        int[] mat = new int[tam]; //actual
+\end_layout
+
+\begin_layout Plain Layout
+
+        int[] mat2 = new int[tam]; //evaluado
+\end_layout
+
+\begin_layout Plain Layout
+
+        int nodoSiguiente; //evaluado en decimal
+\end_layout
+
+\begin_layout Plain Layout
+
+        String coma = ",";
+\end_layout
+
+\begin_layout Plain Layout
+
+        mat = v.binario(nodoActual, tam); //obtengo mi nodo actual en binario
+\end_layout
+
+\begin_layout Plain Layout
+
+        mat2 = v.existe(mat, regla, tam);
+\end_layout
+
+\begin_layout Plain Layout
+
+        nodoSiguiente = v.decimal(mat2);
+\end_layout
+
+\begin_layout Plain Layout
+
+        //System.out.println(nodoActual + " -> " + nodoSiguiente);
+\end_layout
+
+\begin_layout Plain Layout
+
+        if(nodoActual == (int)Math.pow(2,tam) - 1)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                coma = "";
+\end_layout
+
+\begin_layout Plain Layout
+
+            }
+\end_layout
+
+\begin_layout Plain Layout
+
+        String txt = nodoActual + "->" + nodoSiguiente+coma;
+\end_layout
+
+\begin_layout Plain Layout
+
+        esc.escribe(regla, txt);
+\end_layout
+
+\begin_layout Plain Layout
+
+        nodoActual++;
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Clase Escritor
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        public int escribe(int regla, String text)
+\end_layout
+
+\begin_layout Plain Layout
+
+            {
+\end_layout
+
+\begin_layout Plain Layout
+
+                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(r
+egla+".txt", true)))
+\end_layout
+
+\begin_layout Plain Layout
+
+                         {
+\end_layout
+
+\begin_layout Plain Layout
+
+                            bw.write(text);
+\end_layout
+
+\begin_layout Plain Layout
+
+                            bw.close();
+\end_layout
+
+\begin_layout Plain Layout
+
+                            return 1;
+\end_layout
+
+\begin_layout Plain Layout
+
+                         }
+\end_layout
+
+\begin_layout Plain Layout
+
+                    catch (IOException e)
+\end_layout
+
+\begin_layout Plain Layout
+
+                         { e.printStackTrace();	return 0;}
+\end_layout
+
+\begin_layout Plain Layout
+
+           }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Subsection
+Clasificación de los atractores
+\end_layout
+
+\begin_layout Subsubsection
+Clase I - Estáticos
+\end_layout
+
+\begin_layout Enumerate
+Descripción
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Éstos autómatas celulares presentan un comportamiento estático y homogéneo
+ donde su atractor siempre se dirige a un punto y se mantiene estacionado
+ ahí de manera infinita.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Atractores de automatas clase I
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Regla 0
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 0.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 1
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 1.1.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 1.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 4
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 4.png
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 8
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 8.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 12
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 12.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 13
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 13.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 28
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 28.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 29
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 29.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 32
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 32.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 36
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 36.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+regla 40
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 40.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 44
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 44.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 50
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 50.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 51
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 51.png
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 72
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 72.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 76
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 76.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 77
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 77.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 78
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 78.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 104
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 104.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 108
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 108.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 128
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 128.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 132
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 132.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 136
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 136.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 140
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 140.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 160
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 160.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 164
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 164.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 172
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 172.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 200
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 200.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 204
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 204.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 232
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 232.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection
+Clase II - Periódicos
+\end_layout
+
+\begin_layout Enumerate
+Descripción
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+El atractor o los atractores de éstas reglas siempre terminan en n estados
+ cíclicos que se repiten uno tras otro indefindiamente, por más ramas y
+ divisiones que tenga siempre caen en los estados loop.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Reglas
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Regla 2
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 2.2.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 2.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 3
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 3.1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 3.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 5
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 5.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 6
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 6.1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 6.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 7
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 7.1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 7.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 9
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 9.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 10
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 10.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 11
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 11.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 14
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 14.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 15
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 15.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 16
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 16.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 17
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 17.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 18
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 18.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 19
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 19.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 20
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 20.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 21
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 21.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 23
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 23.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 24
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 24.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 25
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 25.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 26
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 26.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 27
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 27.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 31
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 31.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 33
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 33.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 34
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 34.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 35
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 35.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 37
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 37.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 41
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 41.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 42
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 42.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 43 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 43.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 46
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 46.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 56
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 56.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 57
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 57.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 58
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 58.1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 58.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 74
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 74.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 88
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 88.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 105
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 105.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 130
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 130.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 133
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 133.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 134
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 134.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 138
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 138.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 142
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 142.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 150
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 150.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 152
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 152.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 156
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 156.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 162
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 162.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 170
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 170.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 178
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 178.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 184
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 184.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection
+Clase III - Complejos
+\end_layout
+
+\begin_layout Enumerate
+Descripción
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Este tipo de autómatas presentan diversos atractores, los cuale spresentan
+ comportamientos estáticos o cíclicos, llegando a cada uno de ellos con
+ estados diferentes lo que al final produce cierto tipo de patrones combinados.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Reglas
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Regla 22
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 22.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 54
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 54.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 60
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 60.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 73
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 73.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 146
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 146.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 161
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 161.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsubsection
+Clase IV - Caóticos
+\end_layout
+
+\begin_layout Enumerate
+Descripción
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Este tipo de autómatas celulares presenta combinaciones de los atractores
+ de autómatas celulares clase I y clase II pero a su vez tiene ciclos muy
+ muy largos lo que genera comportamientos erráticos pero con secciones en
+ aparente orden, suelen tener raman tupdias cortas y girar en torno a un
+ ciclo.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Reglas
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Regla 30
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 30.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 45
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 45.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 90
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 90.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 106
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 106.1.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 106.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 110
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 110.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Regla 137
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Graphics
+	filename 137.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
